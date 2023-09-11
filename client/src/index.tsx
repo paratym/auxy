@@ -1,4 +1,6 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
+import { AuxyRouter } from './router';
+import './global.css';
 
-render(() => <h1>Auxy</h1>, document.getElementById('root')!);
+render(() => <AuxyRouter />, document.getElementById('root')!);
