@@ -1,3 +1,10 @@
+import { View } from '../components';
+import { TrackList } from '../components';
+
 export function SessionView() {
-	return <div>Session</div>;
+	return (
+		<View>
+			<TrackList />
+		</View>
+	);
 }

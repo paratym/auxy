@@ -2,12 +2,14 @@
 	"name": "auxy",
 	"version": "0.0.0",
 	"description": "",
+	"type": "module",
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
-		"tauri": "tauri"
+		"tauri": "tauri",
+		"generate:component": "node scripts/generate-component.js"
 	},
 	"license": "MIT",
 	"dependencies": {
