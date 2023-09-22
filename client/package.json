@@ -9,7 +9,7 @@
 		"build": "vite build",
 		"serve": "vite preview",
 		"tauri": "tauri",
-		"generate:component": "node scripts/generate-component.js"
+		"gen:component": "node scripts/generate-component.js"
 	},
 	"license": "MIT",
 	"dependencies": {
@@ -20,7 +20,7 @@
 		"solid-js": "^1.7.8"
 	},
 	"devDependencies": {
-		"@tauri-apps/cli": "^2.0.0-alpha.13",
+		"@tauri-apps/cli": "^2.0.0-alpha.14",
 		"@vanilla-extract/vite-plugin": "^3.9.0",
 		"typescript": "^5.0.2",
 		"vite": "^4.4.4",

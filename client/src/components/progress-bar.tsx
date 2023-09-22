@@ -1,3 +1,4 @@
+import { Label } from '.';
 import * as styles from './progress-bar.css';
 
 export function ProgressBar() {
@@ -9,8 +10,8 @@ export function ProgressBar() {
 				</div>
 			</div>
 			<div class={styles.labelContainer}>
-				<span>1:23</span>
-				<span>4:56</span>
+				<Label size='xs'>1:23</Label>
+				<Label size='xs'>4:56</Label>
 			</div>
 		</div>
 	);

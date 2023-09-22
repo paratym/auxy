@@ -49,7 +49,11 @@ export const container = style({});`
 
 try {
 	const indexPath = path.resolve(componentsPath, `index.ts`);
-	await fs.appendFile(indexPath, `export * from './${kebabName};'`);
+	await fs.appendFile(
+		indexPath,
+		`export * from './${kebabName}';
+`
+	);
 } catch (err) {
 	console.error('error appending to index file', err);
 }

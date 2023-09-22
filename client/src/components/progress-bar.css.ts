@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { theme } from '../theme.css';
 
 export const container = style({
 	width: '100%',
@@ -9,24 +10,25 @@ export const labelContainer = style({
 	width: '100%',
 	display: 'flex',
 	justifyContent: 'space-between',
-	paddingTop: '6px',
-	color: '#fff',
+	padding: '6px 6px 0',
+	color: theme.colors.foreground[0],
 });
 
 export const track = style({
 	width: '100%',
 	height: '6px',
 	borderRadius: '3px',
-	backgroundColor: '#e6e6e6',
+	backgroundColor: theme.colors.foreground[3],
 });
 
 export const progress = style({
 	height: '100%',
+	width: '50%',
 	position: 'relative',
 	display: 'flex',
 	alignItems: 'center',
 	borderRadius: '3px',
-	backgroundColor: '#8221bf',
+	backgroundColor: theme.colors.primary,
 });
 
 export const thumb = style({
@@ -35,7 +37,7 @@ export const thumb = style({
 	position: 'absolute',
 	inset: 'auto',
 	right: '-8px',
-	backgroundColor: '#fff',
+	backgroundColor: theme.colors.foreground[2],
 	borderRadius: '50%',
 	alignSelf: 'center',
 });

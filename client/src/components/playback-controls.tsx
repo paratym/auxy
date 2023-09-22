@@ -5,34 +5,40 @@ import {
 	IconPlayerPlay,
 	IconPlayerSkipForward,
 	IconPlus,
-	IconHeadphones,
+	TablerIconsProps,
+	IconDeviceAirpods,
 } from '@tabler/icons-solidjs';
+
+const stateIconProps: TablerIconsProps = {
+	// size: '1rem',
+	// color: theme.colors.primary,
+};
 
 export function PlaybackContols() {
 	return (
-		<>
+		<div class={styles.container}>
 			<ProgressBar />
 			<div class={styles.actionsContainer}>
-				<button>
-					<IconHeadphones />
+				<button class={styles.stateButton}>
+					<IconDeviceAirpods class={styles.stateIcon} {...stateIconProps} />
 				</button>
 
-				<button>
+				<button class={styles.actionButton}>
 					<IconPlayerSkipBack />
 				</button>
 
-				<button>
+				<button class={styles.actionButton}>
 					<IconPlayerPlay />
 				</button>
 
-				<button>
+				<button class={styles.actionButton}>
 					<IconPlayerSkipForward />
 				</button>
 
-				<button>
-					<IconPlus />
+				<button class={styles.stateButton}>
+					<IconPlus class={styles.stateIcon} {...stateIconProps} />
 				</button>
 			</div>
-		</>
+		</div>
 	);
 }

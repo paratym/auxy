@@ -5,7 +5,7 @@ import * as styles from './track.css';
 export function Track() {
 	return (
 		<div class={styles.container}>
-			<CoverArt releaseId='' />
+			<CoverArt releaseId='' size='sm' />
 			<div class={styles.infoContainer}>
 				<h3>Track Title</h3>
 				<span>Artist Name</span>
