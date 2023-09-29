@@ -1,0 +1,26 @@
+[package]
+name = "auxy-api"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.6.20"
+base64 = "0.21.4"
+const_format = "0.2.31"
+dotenv_codegen = "0.15.0"
+hyper = { version = "0.14.27", features = ["client"] }
+pbkdf2 = { version = "0.12.2", features = ["simple"] }
+rand = "0.8.5"
+serde = { version = "1.0.188", features = ["derive"] }
+serde_json = "1.0.107"
+sqlx = { version = "0.7.1", features = [
+  "postgres",
+  "macros",
+  "time",
+  "runtime-tokio-native-tls",
+] }
+time = { version = "0.3.29", features = ["macros"] }
+tokio = { version = "1.32.0", features = ["full"] }
+url = "2.4.1"
