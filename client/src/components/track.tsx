@@ -1,5 +1,5 @@
 import { IconDots } from '@tabler/icons-solidjs';
-import { CoverArt } from '.';
+import { CoverArt, Label } from '.';
 import * as styles from './track.css';
 
 export function Track() {
@@ -7,8 +7,12 @@ export function Track() {
 		<div class={styles.container}>
 			<CoverArt releaseId='' size='sm' />
 			<div class={styles.infoContainer}>
-				<h3>Track Title</h3>
-				<span>Artist Name</span>
+				<Label size='sm' shade={0} bold>
+					Track title
+				</Label>
+				<Label size='xs' shade={4}>
+					Artist name
+				</Label>
 			</div>
 			<button>
 				<IconDots />

@@ -9,9 +9,17 @@ export const layout = style({
 	gap: theme.gap.lg,
 });
 
+export const trackInfoContainer = style({
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+	gap: theme.gap.xs,
+});
+
 export const sessionCard = style({
 	width: '100%',
 	height: '100%',
+	marginTop: theme.gap.lg,
 	padding: theme.gap.md,
 	paddingTop: theme.gap.sm,
 	paddingBottom: 'revert',

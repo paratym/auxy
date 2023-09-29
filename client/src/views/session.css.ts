@@ -19,8 +19,8 @@ export const infoContainer = style({
 	position: 'sticky',
 	inset: 0,
 	bottom: 'auto',
-	padding: theme.gap.xs,
-	background: `color-mix(in hsl, ${theme.colors.background[0]} 80%, transparent)`,
+	paddingBottom: theme.gap.sm,
+	marginBottom: theme.gap.sm,
 	backdropFilter: 'blur(2px)',
 });
 
