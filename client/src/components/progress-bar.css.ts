@@ -37,7 +37,7 @@ export const thumb = style({
 	position: 'absolute',
 	inset: 'auto',
 	right: '-8px',
-	backgroundColor: theme.colors.foreground[2],
 	borderRadius: '50%',
-	alignSelf: 'center',
+	backgroundColor: theme.colors.foreground[2],
+	boxShadow: theme.shadows.sm,
 });

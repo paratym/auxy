@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { theme } from '../theme.css';
 
 export const container = style({
 	maxWidth: '100%',
@@ -6,7 +7,7 @@ export const container = style({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	background: 'pink',
+	background: theme.colors.primary,
 });
 
 export const image = style({

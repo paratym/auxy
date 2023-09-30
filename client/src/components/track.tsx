@@ -1,5 +1,4 @@
-import { IconDots } from '@tabler/icons-solidjs';
-import { CoverArt, Label } from '.';
+import { CoverArt, Label, OverflowMenu } from '.';
 import * as styles from './track.css';
 
 export function Track() {
@@ -14,9 +13,7 @@ export function Track() {
 					Artist name
 				</Label>
 			</div>
-			<button>
-				<IconDots />
-			</button>
+			<OverflowMenu />
 		</div>
 	);
 }
