@@ -16,11 +16,6 @@ body,
 }
 
 @font-face {
-	font-family: 'Ygro Sans';
-	src: url(./assets/fonts/YgroSans.woff2) format('woff2');
-}
-
-@font-face {
 	font-family: 'Bw Nista Geometric';
 	src: url(./assets/fonts/BwNistaGeo-Rg.woff2) format('woff2');
 	font-weight: normal;
@@ -30,4 +25,8 @@ body,
 	font-family: 'Bw Nista Geometric';
 	src: url(./assets/fonts/BwNistaGeo-xBd.woff2) format('woff2');
 	font-weight: bold;
+}
+
+svg {
+	display: block;
 }

@@ -3,7 +3,8 @@ import { LabelProps } from '.';
 import { theme } from '../theme.css';
 
 const labelBase = style({
-	fontFamily: theme.fonts.body,
+	margin: 'unset',
+	fontFamily: theme.font,
 	color: theme.colors.foreground[3],
 });
 

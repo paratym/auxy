@@ -16,10 +16,3 @@ export const actionsContainer = style({
 	padding: `0 ${theme.gap.md}`,
 	color: theme.colors.foreground[0],
 });
-
-export const button = style({
-	all: 'unset',
-	color: theme.colors.foreground[0],
-});
-
-export const buttonActive = style([button, { color: theme.colors.primary }]);

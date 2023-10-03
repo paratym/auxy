@@ -27,7 +27,7 @@ try {
 export type ${pascalName}Props = {};
 
 export function ${pascalName}({}: ${pascalName}Props) {
-  return <div class={styles.container} />
+  return <div class={styles.container}></div>;
 };
 `
 	);

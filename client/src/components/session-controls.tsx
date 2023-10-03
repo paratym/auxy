@@ -10,7 +10,7 @@ import {
 	IconSparkles,
 } from '@tabler/icons-solidjs';
 import * as styles from './session-controls.css';
-import { ProgressBar } from '.';
+import { Button, ProgressBar } from '.';
 
 export type SessionControlsProps = {};
 
@@ -18,45 +18,45 @@ export function SessionControls({}: SessionControlsProps) {
 	return (
 		<div class={styles.container}>
 			<div class={styles.actionsContainer}>
-				<button class={styles.buttonActive}>
+				<Button variant='icon' active>
 					<IconRepeat />
-				</button>
+				</Button>
 
-				<button class={styles.button}>
+				<Button variant='icon'>
 					<IconArrowsShuffle />
-				</button>
+				</Button>
 
-				<button class={styles.button}>
+				<Button variant='icon'>
 					<IconSparkles />
-				</button>
+				</Button>
 
-				<button class={styles.buttonActive}>
+				<Button variant='icon'>
 					<IconBroadcast />
-				</button>
+				</Button>
 			</div>
 
 			<ProgressBar />
 
 			<div class={styles.actionsContainer}>
-				<button class={styles.buttonActive}>
+				<Button variant='icon'>
 					<IconDeviceAirpods />
-				</button>
+				</Button>
 
-				<button class={styles.button}>
+				<Button variant='icon'>
 					<IconPlayerSkipBack />
-				</button>
+				</Button>
 
-				<button class={styles.button}>
+				<Button variant='icon'>
 					<IconPlayerPlay />
-				</button>
+				</Button>
 
-				<button class={styles.button}>
+				<Button variant='icon'>
 					<IconPlayerSkipForward />
-				</button>
+				</Button>
 
-				<button class={styles.button}>
+				<Button variant='icon'>
 					<IconPlus />
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

@@ -1,10 +1,11 @@
-import { A } from '@solidjs/router';
+import { Navigation, Title, View } from '../components';
 
 export function HomeView() {
 	return (
-		<>
-			<A href='/player'>Player</A>
-			<A href='/session'>Session</A>
-		</>
+		<View>
+			<Title size='sm'>Music n stuff idk</Title>
+			<div />
+			<Navigation />
+		</View>
 	);
 }

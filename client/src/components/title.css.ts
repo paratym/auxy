@@ -4,7 +4,7 @@ import { theme } from '../theme.css';
 
 const titleBase = style({
 	margin: 'unset',
-	fontFamily: theme.fonts.title,
+	fontFamily: theme.font,
 	fontWeight: 700,
 	color: theme.colors.foreground[0],
 });

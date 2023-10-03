@@ -26,11 +26,8 @@ export const [themeContainer, theme] = createTheme({
 			6: 'hsl(232deg 4% 20%)',
 		},
 	},
-	fonts: {
-		title: `Ygro Sans, Helvetica, sans-serif`,
-		body: `Bw Nista Geometric, Helvetica, sans-serif`,
-	},
-	shadows: {
+	font: 'Bw Nista Geometric, Helvetica, sans-serif',
+	shadow: {
 		xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
 		sm: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
 		md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
@@ -46,7 +43,7 @@ export const [themeContainer, theme] = createTheme({
 		full: '9999px',
 	} satisfies Partial<Record<Size, string>>,
 	gap: {
-		xs: '0.25rem',
+		xs: '0.4rem',
 		sm: '0.6rem',
 		md: '1rem',
 		lg: '1.6rem',

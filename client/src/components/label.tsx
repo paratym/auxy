@@ -11,14 +11,14 @@ export type LabelProps = {
 
 export function Label({ size = 'md', shade, bold, children }: LabelProps) {
 	return (
-		<div
+		<h6
 			class={styles.label[size]}
 			style={{
 				color: shade !== undefined ? theme.colors.foreground[shade] : undefined,
-				'font-weight': bold ? 'bold' : undefined,
+				'font-weight': bold ? 'bold' : 'unset',
 			}}
 		>
 			{children}
-		</div>
+		</h6>
 	);
 }

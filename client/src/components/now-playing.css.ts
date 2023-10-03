@@ -3,14 +3,13 @@ import { theme } from '../theme.css';
 
 export const container = style({
 	width: '100%',
-	display: 'flex',
+	display: 'grid',
+	gridTemplateColumns: '1fr auto auto',
 	alignItems: 'center',
-	justifyContent: 'stretch',
 	gap: theme.gap.md,
 	padding: theme.gap.xs,
-});
-
-export const infoContainer = style({
-	color: 'white',
-	flexGrow: 1,
+	paddingRight: theme.gap.md,
+	backgroundColor: theme.colors.background[1],
+	borderRadius: theme.radius.sm,
+	boxShadow: theme.shadow.sm,
 });

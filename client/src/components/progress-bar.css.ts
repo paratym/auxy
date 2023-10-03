@@ -39,5 +39,5 @@ export const thumb = style({
 	right: '-8px',
 	borderRadius: '50%',
 	backgroundColor: theme.colors.foreground[2],
-	boxShadow: theme.shadows.sm,
+	boxShadow: theme.shadow.sm,
 });
