@@ -11,5 +11,6 @@ export default defineConfig(async () => ({
 		host: '127.0.0.1',
 		origin: 'http://127.0.0.1:1420',
 	},
-	envPrefix: ['VITE_', 'TAURI_'],
+	envDir: '.',
+	envPrefix: 'PUBLIC_',
 }));

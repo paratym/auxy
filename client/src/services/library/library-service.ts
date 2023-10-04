@@ -1,5 +1,3 @@
-export type AudioService = {};
-
 export type Track = {
 	name: string;
 };
