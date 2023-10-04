@@ -5,7 +5,7 @@ import { theme } from '../theme.css';
 const labelBase = style({
 	margin: 'unset',
 	fontFamily: theme.font,
-	color: theme.colors.foreground[3],
+	color: theme.colors.foreground[0],
 });
 
 export const label = styleVariants<Record<NonNullable<LabelProps['size']>, ComplexStyleRule>>({

@@ -35,11 +35,11 @@ export const [themeContainer, theme] = createTheme({
 		xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
 	} satisfies Record<AbsoluteSize, string>,
 	radius: {
-		xs: '0.25rem',
-		sm: '0.4rem',
-		md: '0.6rem',
-		lg: '0.8rem',
-		xl: '1rem',
+		xs: '0.16rem',
+		sm: '0.24rem',
+		md: '0.4rem',
+		lg: '0.6rem',
+		xl: '0.8rem',
 		full: '9999px',
 	} satisfies Partial<Record<Size, string>>,
 	gap: {

@@ -1,8 +1,6 @@
-export * from './cover-art';
 export * from './progress-bar';
 export * from './library-object-list';
 export * from './session-controls';
-export * from './title';
 export * from './label';
 export * from './handle';
 export * from './navigation';
@@ -12,3 +10,5 @@ export * from './library-object-info';
 export * from './view';
 export * from './library-object-overlay';
 export * from './overlay-backdrop';
+export * from './search-overlay';
+export * from './scrollable-list';

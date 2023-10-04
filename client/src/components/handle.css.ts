@@ -3,6 +3,9 @@ import { theme } from '../theme.css';
 import { HandleProps } from '.';
 
 export const container = style({
+	width: '100%',
+	display: 'flex',
+	justifyContent: 'center',
 	color: theme.colors.foreground[6],
 });
 

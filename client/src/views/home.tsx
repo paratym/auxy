@@ -1,9 +1,9 @@
-import { Navigation, Title, View } from '../components';
+import { Navigation, Label, View } from '../components';
 
 export function HomeView() {
 	return (
 		<View>
-			<Title size='sm'>Music n stuff idk</Title>
+			<Label size='lg'>Music n stuff idk</Label>
 			<div />
 			<Navigation />
 		</View>

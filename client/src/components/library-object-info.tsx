@@ -1,9 +1,7 @@
-import { CoverArt, Label, Title } from '.';
+import { Label } from '.';
 import { LibraryObject } from '../services';
 import { AbsoluteSize, theme } from '../theme.css';
 import * as styles from './library-object-info.css';
-import { compareAbsoluteSize } from '../utils/compare-absolute-size';
-import { Match, Switch } from 'solid-js';
 
 export type LibraryObjectInfoProps = {
 	size?: AbsoluteSize;
@@ -12,24 +10,17 @@ export type LibraryObjectInfoProps = {
 };
 
 export function LibraryObjectInfo({ size = 'md', orientation = 'horizontal', object }: LibraryObjectInfoProps) {
-	const largeOrLarger = compareAbsoluteSize(size, 'lg') >= 0;
-
 	return (
 		<div class={styles.container[orientation]} style={{ gap: layoutGap[size] }}>
-			<CoverArt releaseId='' size={size} />
-			<div class={styles.infoContainer[orientation]}>
-				<Switch>
-					<Match when={largeOrLarger}>
-						<Title size={nameSize[size]}>{object.name}</Title>
-					</Match>
-					<Match when={!largeOrLarger}>
-						<Label size={nameSize[size]} shade={6}>
-							{object.name}
-						</Label>
-					</Match>
-				</Switch>
+			<div class={styles.imageContainer[size]}>
+				<img class={styles.image} />
+			</div>
 
-				<Label size={infoSize[size]} shade={6}>
+			<div class={styles.infoContainer[orientation]} style={{ gap: infoGap[size] }}>
+				<Label size={nameSize[size]} bold>
+					{object.name}
+				</Label>
+				<Label size={infoSize[size]} shade={4}>
 					Artist name
 				</Label>
 			</div>
@@ -38,25 +29,33 @@ export function LibraryObjectInfo({ size = 'md', orientation = 'horizontal', obj
 }
 
 const layoutGap: Record<AbsoluteSize, string> = {
-	xs: theme.gap.xs,
-	sm: theme.gap.xs,
+	xs: theme.gap.sm,
+	sm: theme.gap.sm,
 	md: theme.gap.sm,
 	lg: theme.gap.md,
 	xl: theme.gap.md,
+};
+
+const infoGap: Record<AbsoluteSize, string | undefined> = {
+	xs: undefined,
+	sm: undefined,
+	md: undefined,
+	lg: theme.gap.xs,
+	xl: theme.gap.xs,
 };
 
 const nameSize: Record<AbsoluteSize, AbsoluteSize> = {
 	xs: 'sm',
 	sm: 'sm',
 	md: 'md',
-	lg: 'md',
-	xl: 'md',
+	lg: 'lg',
+	xl: 'xl',
 };
 
 const infoSize: Record<AbsoluteSize, AbsoluteSize> = {
 	xs: 'xs',
-	sm: 'xs',
+	sm: 'sm',
 	md: 'sm',
-	lg: 'sm',
+	lg: 'md',
 	xl: 'md',
 };

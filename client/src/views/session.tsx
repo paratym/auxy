@@ -2,8 +2,8 @@ import * as styles from './session.css';
 import { Handle, Label, LibraryObjectList, LibraryObjectOverlay, View } from '../components';
 import { SessionControls } from '../components/session-controls';
 import { useLocation, useNavigate } from '@solidjs/router';
-import { Show, createSignal } from 'solid-js';
 import { LibraryObject } from '../services';
+import { useOverlayManager } from '../utils';
 
 export type SessionLocationState = {
 	previous?: string;
@@ -14,7 +14,9 @@ export function SessionView() {
 	const navigate = useNavigate();
 	const previous = typeof state?.previous === 'string' ? state.previous : '/home';
 
-	const [expandedObject, expandObject] = createSignal<LibraryObject>();
+	const [Overlay, openOverlay, closeOverlay] = useOverlayManager({
+		libraryObject: LibraryObjectOverlay,
+	});
 
 	return (
 		<>
@@ -30,7 +32,7 @@ export function SessionView() {
 
 				<LibraryObjectList
 					objects={Array<LibraryObject>(56).fill({ type: 'track', name: 'Track Title' })}
-					onObjectExpand={(o) => expandObject(o)}
+					onObjectExpand={(object) => openOverlay('libraryObject', { object, onClose: closeOverlay })}
 				/>
 
 				<div class={styles.controlsContainer}>
@@ -39,9 +41,7 @@ export function SessionView() {
 				</div>
 			</View>
 
-			<Show when={expandedObject()}>
-				{(object) => <LibraryObjectOverlay object={object()} onClose={() => expandObject(undefined)} />}
-			</Show>
+			<Overlay />
 		</>
 	);
 }
