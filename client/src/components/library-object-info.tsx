@@ -1,3 +1,4 @@
+import { mergeProps } from 'solid-js';
 import { Label } from '.';
 import { LibraryObject } from '../services';
 import { AbsoluteSize, theme } from '../theme.css';
@@ -9,18 +10,20 @@ export type LibraryObjectInfoProps = {
 	object: LibraryObject;
 };
 
-export function LibraryObjectInfo({ size = 'md', orientation = 'horizontal', object }: LibraryObjectInfoProps) {
+export function LibraryObjectInfo(_props: LibraryObjectInfoProps) {
+	const props = mergeProps({ size: 'md', orientation: 'horizontal' } as const, _props);
+
 	return (
-		<div class={styles.container[orientation]} style={{ gap: layoutGap[size] }}>
-			<div class={styles.imageContainer[size]}>
+		<div class={styles.container[props.orientation]} style={{ gap: layoutGap[props.size] }}>
+			<div class={styles.imageContainer[props.size]}>
 				<img class={styles.image} />
 			</div>
 
-			<div class={styles.infoContainer[orientation]} style={{ gap: infoGap[size] }}>
-				<Label size={nameSize[size]} bold>
-					{object.name}
+			<div class={styles.infoContainer[props.orientation]} style={{ gap: infoGap[props.size] }}>
+				<Label size={nameSize[props.size]} bold>
+					{props.object.name}
 				</Label>
-				<Label size={infoSize[size]} shade={4}>
+				<Label size={infoSize[props.size]} shade={4}>
 					Artist name
 				</Label>
 			</div>

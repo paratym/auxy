@@ -6,6 +6,6 @@ export type ButtonProps = JSX.HTMLElementTags['button'] & {
 	active?: boolean;
 };
 
-export function Button({ variant, active, ...props }: ButtonProps) {
-	return <button class={styles.iconButton} aria-checked={active} {...props} />;
+export function Button(props: ButtonProps) {
+	return <button class={styles.iconButton} aria-checked={props.active} {...props} />;
 }

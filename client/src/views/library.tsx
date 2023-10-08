@@ -10,10 +10,10 @@ export function LibraryView() {
 
 	return (
 		<>
-			<View>
+			<View authed>
 				<div />
 				<LibraryObjectList
-					objects={Array<LibraryObject>(56).fill({ name: 'Track Title', type: 'track' })}
+					objects={Array<LibraryObject>(56).fill({ name: 'Track Name', type: 'track' })}
 					onObjectExpand={(object) => openOvelay('libraryObject', { object, onClose: closeOverlay })}
 				/>
 				<Navigation />

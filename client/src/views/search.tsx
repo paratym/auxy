@@ -2,7 +2,7 @@ import { Navigation, View } from '../components';
 
 export function SearchView() {
 	return (
-		<View>
+		<View authed>
 			<div />
 			<div />
 			<Navigation />

@@ -20,7 +20,7 @@ export function SessionView() {
 
 	return (
 		<>
-			<View>
+			<View authed>
 				<div class={styles.infoContainer}>
 					<Label size='sm' shade={6}>
 						16m / 2h 32m
@@ -31,7 +31,7 @@ export function SessionView() {
 				</div>
 
 				<LibraryObjectList
-					objects={Array<LibraryObject>(56).fill({ type: 'track', name: 'Track Title' })}
+					objects={Array<LibraryObject>(56).fill({ name: 'Track Name', type: 'track' })}
 					onObjectExpand={(object) => openOverlay('libraryObject', { object, onClose: closeOverlay })}
 				/>
 

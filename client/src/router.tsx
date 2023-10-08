@@ -1,5 +1,5 @@
 import { Route, Router, Routes } from '@solidjs/router';
-import { HomeView, LibraryView, ProfileView, SearchView, SessionView, ThemeView } from './views';
+import { HomeView, LibraryView, ProfileView, SearchView, SessionView } from './views';
 
 export function AuxyRouter() {
 	return (
@@ -10,8 +10,6 @@ export function AuxyRouter() {
 				<Route path='/search' component={SearchView} />
 				<Route path='/library' component={LibraryView} />
 				<Route path='/profile' component={ProfileView} />
-
-				<Route path='/theme' component={ThemeView} />
 			</Routes>
 		</Router>
 	);

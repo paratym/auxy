@@ -6,7 +6,7 @@ import { IconPlayerPause, IconVolume } from '@tabler/icons-solidjs';
 
 export type NowPlayingProps = {};
 
-export function NowPlaying({}: NowPlayingProps) {
+export function NowPlaying(props: NowPlayingProps) {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 

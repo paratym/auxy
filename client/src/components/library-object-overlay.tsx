@@ -25,19 +25,16 @@ export type LibraryObjectOverlayProps = {
 	onClose?: () => void;
 };
 
-export function LibraryObjectOverlay({ object, actions: actionsProp, onClose }: LibraryObjectOverlayProps) {
-	const actions = objectActions[object.type];
-	if (actionsProp) actions.concat(actionsProp);
-
+export function LibraryObjectOverlay(props: LibraryObjectOverlayProps) {
 	return (
 		<OverlayBackdrop>
 			<div class={styles.layout}>
-				<LibraryObjectInfo size='xl' orientation='vertical' object={object} />
+				<LibraryObjectInfo size='xl' orientation='vertical' object={props.object} />
 
 				<div class={styles.actionsCard}>
-					<Handle direction='down' onclick={() => onClose?.()} />
+					<Handle direction='down' onclick={() => props.onClose?.()} />
 					<ScrollableList withShades gap='xs'>
-						<For each={actions}>
+						<For each={[...objectActions[props.object.type], ...(props.actions ?? [])]}>
 							{(action) => (
 								<button class={styles.action} onclick={() => action.callback()}>
 									<action.Icon />

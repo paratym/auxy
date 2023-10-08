@@ -1,5 +1,5 @@
 import { FetchTransport, createClient } from '@rspc/client';
-import type { Procedures } from './auxy-api-bindings';
+import { Procedures } from './auxy-api-bindings';
 import env from '../env';
 
 export const auxyApiClient = createClient<Procedures>({

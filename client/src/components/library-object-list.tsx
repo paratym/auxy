@@ -9,14 +9,14 @@ type LibraryObjectListProps = {
 	onObjectExpand?: (object: LibraryObject, i: number) => void;
 };
 
-export function LibraryObjectList({ objects, onObjectExpand }: LibraryObjectListProps) {
+export function LibraryObjectList(props: LibraryObjectListProps) {
 	return (
 		<ScrollableList withShades>
-			<For each={objects}>
+			<For each={props.objects}>
 				{(object, i) => (
 					<div class={styles.trackContainer}>
 						<LibraryObjectInfo size='sm' object={object} />
-						<Button variant='icon' onclick={() => onObjectExpand?.(object, i())}>
+						<Button variant='icon' onclick={() => props.onObjectExpand?.(object, i())}>
 							<IconDots />
 						</Button>
 					</div>

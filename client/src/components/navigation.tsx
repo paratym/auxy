@@ -6,7 +6,7 @@ import { JSX } from 'solid-js';
 
 export type NavigationProps = {};
 
-export function Navigation({}: NavigationProps) {
+export function Navigation(props: NavigationProps) {
 	const { pathname } = useLocation();
 
 	return (
@@ -36,11 +36,11 @@ type NavButtonProps = {
 	children: JSX.Element;
 };
 
-function NavButton({ path, activePath, children }: NavButtonProps) {
+function NavButton(props: NavButtonProps) {
 	return (
-		<A class={styles.navButton} href={path}>
-			<Button variant='icon' active={path === activePath}>
-				{children}
+		<A class={styles.navButton} href={props.path}>
+			<Button variant='icon' active={props.path === props.activePath}>
+				{props.children}
 			</Button>
 		</A>
 	);

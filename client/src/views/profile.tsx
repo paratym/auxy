@@ -2,7 +2,7 @@ import { Navigation, View } from '../components';
 
 export function ProfileView() {
 	return (
-		<View>
+		<View authed>
 			<div />
 			<div />
 			<Navigation />

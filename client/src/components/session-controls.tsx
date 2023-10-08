@@ -14,7 +14,7 @@ import { Button, ProgressBar } from '.';
 
 export type SessionControlsProps = {};
 
-export function SessionControls({}: SessionControlsProps) {
+export function SessionControls(props: SessionControlsProps) {
 	return (
 		<div class={styles.container}>
 			<div class={styles.actionsContainer}>

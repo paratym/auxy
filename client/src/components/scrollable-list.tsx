@@ -9,7 +9,7 @@ export type ScrollableListProps = JSX.HTMLElementTags['div'] & {
 	withShades?: boolean;
 };
 
-export function ScrollableList({ gap, withShades = false, children, ...props }: ScrollableListProps) {
+export function ScrollableList(props: ScrollableListProps) {
 	let containerRef: HTMLDivElement | undefined;
 	const [bgColor, setBgColor] = createSignal('transparent');
 
@@ -26,16 +26,16 @@ export function ScrollableList({ gap, withShades = false, children, ...props }: 
 			class={styles.container}
 			style={{
 				...assignInlineVars({ [styles.background]: bgColor() }),
-				gap: gap ? theme.gap[gap] : undefined,
+				gap: props.gap ? theme.gap[props.gap] : undefined,
 			}}
 		>
-			<Show when={withShades}>
+			<Show when={props.withShades}>
 				<div class={styles.shade.top} />
 			</Show>
 
-			{children}
+			{props.children}
 
-			<Show when={withShades}>
+			<Show when={props.withShades}>
 				<div class={styles.shade.bottom} />
 			</Show>
 		</div>

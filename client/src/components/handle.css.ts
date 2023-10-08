@@ -1,6 +1,5 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { theme } from '../theme.css';
-import { HandleProps } from '.';
 
 export const container = style({
 	width: '100%',
@@ -14,11 +13,3 @@ export const neutral = style({
 	borderRadius: theme.radius.full,
 	backgroundColor: theme.colors.foreground[6],
 });
-
-export const size = styleVariants({
-	xs: { width: '2rem' },
-	sm: { width: '2.6rem' },
-	md: { width: '3.2rem' },
-	lg: { width: '4.2rem' },
-	xl: { width: '5rem' },
-} satisfies Record<keyof HandleProps['size'], any>);

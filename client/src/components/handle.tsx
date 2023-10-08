@@ -1,4 +1,4 @@
-import { JSX, Match, Switch } from 'solid-js';
+import { JSX, Match, Switch, mergeProps } from 'solid-js';
 import { AbsoluteSize } from '../theme.css';
 import * as styles from './handle.css';
 import { IconChevronCompactDown, IconChevronCompactUp } from '@tabler/icons-solidjs';
@@ -8,22 +8,32 @@ export type HandleProps = JSX.HTMLAttributes<HTMLDivElement> & {
 	size?: AbsoluteSize;
 };
 
-export function Handle({ size = 'md', direction = 'neutral', ...props }: HandleProps) {
+export function Handle(_props: HandleProps) {
+	const props = mergeProps({ direction: 'neutral', size: 'md' } as const, _props);
+
 	return (
 		<div class={styles.container} {...props}>
 			<Switch>
-				<Match when={direction === 'up'}>
-					<IconChevronCompactUp class={`${styles.size[size]}`} viewBox='4 11 16 3' />
+				<Match when={props.direction === 'up'}>
+					<IconChevronCompactUp style={{ width: size[props.size] }} />
 				</Match>
 
-				<Match when={direction === 'neutral'}>
-					<div class={`${styles.neutral} ${styles.size[size]}`} {...props} />
+				<Match when={props.direction === 'neutral'}>
+					<div class={styles.neutral} style={{ width: size[props.size] }} {...props} />
 				</Match>
 
-				<Match when={direction === 'down'}>
-					<IconChevronCompactDown class={`${styles.size[size]}`} />
+				<Match when={props.direction === 'down'}>
+					<IconChevronCompactDown style={{ width: size[props.size] }} />
 				</Match>
 			</Switch>
 		</div>
 	);
 }
+
+const size = {
+	xs: '2rem',
+	sm: '2.6rem',
+	md: '3.2rem',
+	lg: '4.2rem',
+	xl: '5rem',
+};

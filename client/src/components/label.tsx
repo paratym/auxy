@@ -9,16 +9,16 @@ export type LabelProps = {
 	children: JSX.Element;
 };
 
-export function Label({ size = 'md', shade, bold, children }: LabelProps) {
+export function Label(props: LabelProps) {
 	return (
 		<h6
-			class={styles.label[size]}
+			class={styles.label[props.size ?? 'md']}
 			style={{
-				color: shade !== undefined ? theme.colors.foreground[shade] : undefined,
-				'font-weight': bold ? 'bold' : 'unset',
+				color: props.shade !== undefined ? theme.colors.foreground[props.shade] : undefined,
+				'font-weight': props.bold ? 'bold' : 'normal',
 			}}
 		>
-			{children}
+			{props.children}
 		</h6>
 	);
 }
