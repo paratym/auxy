@@ -1,3 +1,3 @@
-export * from './library';
+export * from './library-service';
 
-export * from './auxy-api-client';
+export * from './auxy';

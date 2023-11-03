@@ -10,7 +10,7 @@ export function LibraryView() {
 
 	return (
 		<>
-			<View authed>
+			<View>
 				<div />
 				<LibraryObjectList
 					objects={Array<LibraryObject>(56).fill({ name: 'Track Name', type: 'track' })}

@@ -20,7 +20,7 @@ export function SessionView() {
 
 	return (
 		<>
-			<View authed>
+			<View>
 				<div class={styles.infoContainer}>
 					<Label size='sm' shade={6}>
 						16m / 2h 32m

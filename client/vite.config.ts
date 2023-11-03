@@ -8,9 +8,9 @@ export default defineConfig(async () => ({
 	server: {
 		port: 1420,
 		strictPort: true,
-		host: '127.0.0.1',
-		origin: 'http://127.0.0.1:1420',
+		host: true,
 	},
 	envDir: '.',
 	envPrefix: 'PUBLIC_',
+	assetsInclude: ['./assets/**/*', '**/*.woff2'],
 }));

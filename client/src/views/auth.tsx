@@ -1,12 +1,19 @@
-import { createSignal } from 'solid-js';
 import { View } from '../components';
-import { useParams } from '@solidjs/router';
 
 export function AuthView() {
-	const urlParams = useParams();
-	const [hasAccount, setHasAccount] = createSignal(
-		typeof urlParams.hasAccount === 'boolean' ? urlParams.hasAccount : true
-	);
+	// const urlParams = useParams();
+	// const [hasAccount, setHasAccount] = createSignal(
+	// 	typeof urlParams.hasAccount === 'boolean' ? urlParams.hasAccount : true
+	// );
 
-	return <View></View>;
+	return (
+		<View>
+			<div></div>
+			<form>
+				<input type='text' placeholder='username' />
+				<input type='password' placeholder='password' />
+				<button type='submit'>sign up</button>
+			</form>
+		</View>
+	);
 }
