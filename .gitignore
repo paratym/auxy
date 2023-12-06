@@ -3,6 +3,7 @@ generated
 node_modules
 dist
 target
+_old
 
 .DS_Store
 .vscode
