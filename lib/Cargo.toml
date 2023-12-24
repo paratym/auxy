@@ -1,0 +1,10 @@
+[package]
+name = "auxy"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+async-trait = "0.1.74"
+serde = { version = "1.0.193", features = ["derive"] }
+syphon = { git = "https://github.com/paratym/syphon" }
+tokio = { version = "1.35.0", features = ["full"] }

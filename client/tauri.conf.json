@@ -1,0 +1,39 @@
+{
+	"build": {
+		"beforeDevCommand": "npm run dev",
+		"beforeBuildCommand": "npm run build",
+		"devPath": "http://localhost:1420",
+		"distDir": "./dist",
+		"withGlobalTauri": false
+	},
+	"package": {
+		"productName": "auxy",
+		"version": "0.0.0"
+	},
+	"tauri": {
+		"bundle": {
+			"active": true,
+			"targets": "all",
+			"identifier": "auxy.paratym.dev",
+			"icon": [
+				"./assets/logos/32x32.png",
+				"./assets/logos/128x128.png",
+				"./assets/logos/128x128@2x.png",
+				"./assets/logos/icon.icns",
+				"./assets/logos/icon.ico"
+			]
+		},
+		"security": {
+			"csp": null
+		},
+		"windows": [
+			{
+				"fullscreen": false,
+				"resizable": true,
+				"title": "auxy",
+				"width": 800,
+				"height": 600
+			}
+		]
+	}
+}

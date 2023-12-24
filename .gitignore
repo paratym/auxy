@@ -1,9 +1,12 @@
-.env
-generated
+# Javascript
 node_modules
 dist
-target
-_old
 
+# Rust
+target
+.cargo
+
+# Other
 .DS_Store
 .vscode
+.direnv
