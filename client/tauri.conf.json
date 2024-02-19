@@ -7,14 +7,14 @@
 		"withGlobalTauri": false
 	},
 	"package": {
-		"productName": "auxy",
+		"productName": "crud",
 		"version": "0.0.0"
 	},
 	"tauri": {
 		"bundle": {
 			"active": true,
 			"targets": "all",
-			"identifier": "auxy.paratym.dev",
+			"identifier": "crud.paratym.dev",
 			"icon": [
 				"./assets/logos/32x32.png",
 				"./assets/logos/128x128.png",
@@ -30,7 +30,7 @@
 			{
 				"fullscreen": false,
 				"resizable": true,
-				"title": "auxy",
+				"title": "crud",
 				"width": 800,
 				"height": 600
 			}

@@ -1,0 +1,17 @@
+[package]
+name = "crud_server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+argon2 = "0.5.3"
+axum = { version = "0.7.4", features = ["http2"] }
+garde = { version = "0.18.0", features = ["full"] }
+jwt = "0.16.0"
+log = "0.4.20"
+rand = "0.8.5"
+serde = { version = "1.0.196", features = ["derive"] }
+simple_logger = "4.3.3"
+specta = { version = "1.0.5", features = ["export", "tokio"] }
+sqlx = { version = "0.7.3", features = ["runtime-tokio", "macros", "postgres"] }
+tokio = { version = "1.36.0", features = ["full"] }

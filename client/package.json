@@ -1,26 +1,28 @@
 {
-	"name": "auxy",
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"dev:native": "tauri dev",
-		"build": "vite build"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"@solidjs/router": "^0.8.3",
-		"@tabler/icons-solidjs": "^2.34.0",
-		"@tauri-apps/api": "2.0.0-alpha.13",
-		"chroma-js": "^2.4.2",
-		"solid-js": "^1.7.8",
-		"zod": "^3.22.2"
-	},
-	"devDependencies": {
-		"@tauri-apps/cli": "^2.0.0-alpha.20",
-		"@types/chroma-js": "^2.4.1",
-		"typescript": "^5.2.2",
-		"vite": "^4.4.4",
-		"vite-plugin-solid": "^2.7.0"
-	}
+  "name": "crud",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:native": "tauri dev",
+    "build": "vite build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@solidjs/router": "^0.8.3",
+    "@stylexjs/stylex": "^0.5.1",
+    "@tabler/icons-solidjs": "^2.34.0",
+    "@tauri-apps/api": "2.0.0-beta.0",
+    "chroma-js": "^2.4.2",
+    "solid-js": "^1.7.8",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0-beta.1",
+    "@types/chroma-js": "^2.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.4",
+    "vite-plugin-solid": "^2.7.0",
+    "vite-plugin-stylex": "^0.5.0"
+  }
 }

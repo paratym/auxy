@@ -1,0 +1,7 @@
+{
+  "name": "crud",
+  "workspaces": [
+    "client",
+    "server/client"
+  ]
+}
