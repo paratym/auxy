@@ -1,5 +1,5 @@
 {
-  "name": "crud",
+  "name": "auxy",
   "workspaces": [
     "client",
     "server/client"

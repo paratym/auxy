@@ -1,12 +1,11 @@
-import { Heading } from "../components";
-import { Route, Router as SolidRouter, Routes } from "@solidjs/router";
+import { Router as SolidRouter, useRoutes } from "@solidjs/router";
+import { authRoutes } from "./auth";
 
 export function Router() {
-	return (
-		<SolidRouter>
-			<Routes>
-				<Route path="/" component={Heading} />
-			</Routes>
-		</SolidRouter>
-	);
+  const Routes = useRoutes([...authRoutes]);
+  return (
+    <SolidRouter>
+      <Routes />
+    </SolidRouter>
+  );
 }
