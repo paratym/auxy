@@ -2,3 +2,5 @@
 
 export type PasswordCredentials = { username: string; password: string }
 
+export type ApiError = "InternalError" | "Unauthorized" | { InvalidInput: ([string, string])[] } | { Message: string }
+

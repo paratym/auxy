@@ -16,8 +16,4 @@ export const authRoutes = [
       },
     ],
   },
-  {
-    path: "*",
-    component: () => <Navigate href="/auth/sign-up" />,
-  },
 ] as const satisfies readonly RouteDefinition[];

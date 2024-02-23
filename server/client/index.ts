@@ -10,6 +10,10 @@ type RequestParams<TParams, TBody> = {
 } & GenericOptional<"params", TParams> &
 	GenericOptional<"body", TBody>;
 
+export type ApiResult<T> =
+	| { ok: true; data: T }
+	| { ok: false; error: types.ApiError };
+
 export class AuxyApiClient {
 	private baseUrl: string;
 
@@ -26,7 +30,7 @@ export class AuxyApiClient {
 		method = "GET",
 		params = {},
 		body,
-	}: RequestParams<TParams, TBody>): Promise<TResponse> {
+	}: RequestParams<TParams, TBody>): Promise<ApiResult<TResponse>> {
 		const url = new URL(path, this.baseUrl);
 		for (const [key, value] of Object.entries(params)) {
 			url.searchParams.append(key, value);
@@ -34,17 +38,17 @@ export class AuxyApiClient {
 
 		const response = await fetch(url.toString(), {
 			method,
-			headers: {
-				"Content-Type": "application/json",
-			},
+			credentials: "include",
+			headers: { "Content-Type": "application/json" },
 			body: body === undefined ? undefined : JSON.stringify(body),
 		});
 
-		return (await response.json()) as TResponse;
+		const json = await response.json();
+		return response.ok ? { ok: true, data: json } : { ok: false, error: json };
 	}
 
 	async authSignIn(body: types.PasswordCredentials) {
-		await this.request({
+		return await this.request({
 			path: "/auth/sign-in",
 			method: "POST",
 			body,
@@ -52,7 +56,7 @@ export class AuxyApiClient {
 	}
 
 	async authSignUp(body: types.PasswordCredentials) {
-		await this.request({
+		return await this.request({
 			path: "/auth/sign-up",
 			method: "POST",
 			body,
@@ -60,7 +64,7 @@ export class AuxyApiClient {
 	}
 
 	async authSignOut() {
-		await this.request({
+		return await this.request({
 			path: "/auth/sign-out",
 			method: "POST",
 		});

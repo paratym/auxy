@@ -2,6 +2,8 @@ import { z } from "zod";
 import { useForm } from "../../utils";
 import { auxy } from "../../services";
 import { Show } from "solid-js";
+import { View } from "../../components";
+import { useNavigate } from "@solidjs/router";
 
 const credentialsSchema = z.object({
   username: z.string().min(4).max(32),
@@ -14,33 +16,50 @@ export function SignUpView() {
     schema: credentialsSchema,
   });
 
+  const navigate = useNavigate();
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
+    <View authed={false}>
+      <form
+        onSubmit={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
 
-        submit(async (result) => {
-          console.log(result);
-          const res = await auxy.authSignUp(result);
-          console.log(res);
-        });
-      }}
-    >
-      <label>username</label>
-      <input
-        value={state.username}
-        onChange={(e) => setField("username", e.target.value)}
-      />
+          submit(async (result) => {
+            const res = await auxy.authSignUp(result);
+            if (!res.ok) {
+              if (
+                typeof res.error === "object" &&
+                "InvalidInput" in res.error
+              ) {
+                // todo: get field errors from validation report
+              }
 
-      <label>password</label>
-      <input
-        value={state.password}
-        onChange={(e) => setField("password", e.target.value)}
-      />
+              throw res.error;
+            }
 
-      <button type="submit">Sign Up</button>
-      <Show when={submitError()} children={(error) => <span>{error()}</span>} />
-    </form>
+            navigate("/");
+          });
+        }}
+      >
+        <label>username</label>
+        <input
+          value={state.username}
+          onChange={(e) => setField("username", e.target.value)}
+        />
+
+        <label>password</label>
+        <input
+          value={state.password}
+          onChange={(e) => setField("password", e.target.value)}
+        />
+
+        <button type="submit">Sign Up</button>
+        <Show
+          when={submitError()}
+          children={(error) => <span>{error()}</span>}
+        />
+      </form>
+    </View>
   );
 }
