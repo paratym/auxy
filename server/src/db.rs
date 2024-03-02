@@ -1,7 +1,9 @@
-use sqlx::{postgres::PgPoolOptions, Pool, Postgres, migrate};
+use sqlx::{migrate, postgres::PgPoolOptions, Pool, Postgres};
+use std::env;
 
 pub async fn connect() -> Result<Pool<Postgres>, sqlx::Error> {
-    let pool = PgPoolOptions::new().connect(env!("DATABASE_URL")).await?;
+    let url = env::var("DATABASE_URL").expect("missing database url");
+    let pool = PgPoolOptions::new().connect(&url).await?;
     log::info!("successfully connected to database");
 
     migrate!("../migrations").run(&pool).await?;

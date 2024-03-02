@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { useForm } from "../../utils";
-import { auxy } from "../../services";
+import { auxyApi } from "../../services";
 import { Show } from "solid-js";
 import { View } from "../../components";
 import { useNavigate } from "@solidjs/router";
@@ -26,7 +26,7 @@ export function SignUpView() {
           e.preventDefault();
 
           submit(async (result) => {
-            const res = await auxy.authSignUp(result);
+            const res = await auxyApi.client.auth.signUp(result);
             if (!res.ok) {
               if (
                 typeof res.error === "object" &&

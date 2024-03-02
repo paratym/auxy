@@ -180,8 +180,6 @@ dependencies = [
  "axum",
  "axum-extra",
  "garde",
- "hyper_serde",
- "lazy_static",
  "log",
  "rand 0.8.5",
  "serde",
@@ -189,7 +187,7 @@ dependencies = [
  "simple_logger",
  "specta",
  "sqlx",
- "time 0.3.34",
+ "time",
  "tokio",
 ]
 
@@ -259,7 +257,7 @@ dependencies = [
  "bytes",
  "cookie",
  "futures-util",
- "headers 0.4.0",
+ "headers",
  "http 1.0.0",
  "http-body 1.0.0",
  "http-body-util",
@@ -653,7 +651,7 @@ dependencies = [
  "rand 0.8.5",
  "sha2",
  "subtle",
- "time 0.3.34",
+ "time",
  "version_check",
 ]
 
@@ -1725,41 +1723,17 @@ dependencies = [
 
 [[package]]
 name = "headers"
-version = "0.3.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06683b93020a07e3dbcf5f8c0f6d40080d725bea7936fc01ad345c01b97dc270"
-dependencies = [
- "base64",
- "bytes",
- "headers-core 0.2.0",
- "http 0.2.11",
- "httpdate",
- "mime",
- "sha1",
-]
-
-[[package]]
-name = "headers"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "322106e6bd0cba2d5ead589ddb8150a13d7c4217cf80d7c4f682ca994ccc6aa9"
 dependencies = [
  "base64",
  "bytes",
- "headers-core 0.3.0",
+ "headers-core",
  "http 1.0.0",
  "httpdate",
  "mime",
  "sha1",
-]
-
-[[package]]
-name = "headers-core"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e7f66481bfee273957b1f20485a4ff3362987f85b2c236580d81b4eb7a326429"
-dependencies = [
- "http 0.2.11",
 ]
 
 [[package]]
@@ -1959,22 +1933,6 @@ dependencies = [
  "pin-project-lite",
  "socket2",
  "tokio",
-]
-
-[[package]]
-name = "hyper_serde"
-version = "0.13.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7bf2f19b673699cefa20a2e22c6d5bcefa3af7e60b8fe9cf63d0f1f21a23b6e1"
-dependencies = [
- "cookie",
- "headers 0.3.9",
- "http 0.2.11",
- "hyper 0.14.28",
- "mime",
- "serde",
- "serde_bytes",
- "time 0.1.45",
 ]
 
 [[package]]
@@ -3111,7 +3069,7 @@ dependencies = [
  "line-wrap",
  "quick-xml 0.31.0",
  "serde",
- "time 0.3.34",
+ "time",
 ]
 
 [[package]]
@@ -3622,15 +3580,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "serde_bytes"
-version = "0.11.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8b8497c313fd43ab992087548117643f6fcd935cbf36f176ffda0aacf9591734"
-dependencies = [
- "serde",
-]
-
-[[package]]
 name = "serde_derive"
 version = "1.0.197"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3720,7 +3669,7 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "serde_with_macros",
- "time 0.3.34",
+ "time",
 ]
 
 [[package]]
@@ -3831,7 +3780,7 @@ checksum = "8e7e46c8c90251d47d08b28b8a419ffb4aede0f87c2eea95e17d1d5bacbf3ef1"
 dependencies = [
  "colored",
  "log",
- "time 0.3.34",
+ "time",
  "windows-sys 0.48.0",
 ]
 
@@ -4042,7 +3991,7 @@ dependencies = [
  "smallvec",
  "sqlformat",
  "thiserror",
- "time 0.3.34",
+ "time",
  "tokio",
  "tokio-stream",
  "tracing",
@@ -4127,7 +4076,7 @@ dependencies = [
  "sqlx-core",
  "stringprep",
  "thiserror",
- "time 0.3.34",
+ "time",
  "tracing",
  "whoami",
 ]
@@ -4167,7 +4116,7 @@ dependencies = [
  "sqlx-core",
  "stringprep",
  "thiserror",
- "time 0.3.34",
+ "time",
  "tracing",
  "whoami",
 ]
@@ -4190,7 +4139,7 @@ dependencies = [
  "percent-encoding",
  "serde",
  "sqlx-core",
- "time 0.3.34",
+ "time",
  "tracing",
  "url",
  "urlencoding",
@@ -4509,7 +4458,7 @@ dependencies = [
  "syn 2.0.50",
  "tauri-utils",
  "thiserror",
- "time 0.3.34",
+ "time",
  "url",
  "uuid",
  "walkdir",
@@ -4678,17 +4627,6 @@ checksum = "8b9ef9bad013ada3808854ceac7b46812a6465ba368859a37e2100283d2d719c"
 dependencies = [
  "cfg-if",
  "once_cell",
-]
-
-[[package]]
-name = "time"
-version = "0.1.45"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b797afad3f312d1c66a56d11d0316f916356d11bd158fbc6ca6389ff6bf805a"
-dependencies = [
- "libc",
- "wasi 0.10.0+wasi-snapshot-preview1",
- "winapi",
 ]
 
 [[package]]
@@ -5130,12 +5068,6 @@ name = "wasi"
 version = "0.9.0+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
-
-[[package]]
-name = "wasi"
-version = "0.10.0+wasi-snapshot-preview1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
 
 [[package]]
 name = "wasi"

@@ -1,6 +1,6 @@
 import { useNavigate } from "@solidjs/router";
 import { View } from "../components/view";
-import { auxy } from "../services";
+import { auxyApi } from "../services";
 
 export function HomeView() {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export function HomeView() {
       <h1>music n shiiii</h1>
       <button
         onClick={() => {
-          auxy.authSignOut();
+          auxyApi.client.auth.signOut();
           navigate("/auth/sign-in");
         }}
       >

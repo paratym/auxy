@@ -61,7 +61,7 @@ pub async fn signin_handler(
     .map_err(|_| ApiError::InternalError)?;
 
     Ok((
-        SignedCookieJar::new(state.private_key.clone()).add(token),
+        SignedCookieJar::new(state.auth_key.clone()).add(token),
         Json(()),
     ))
 }
