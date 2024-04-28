@@ -11,55 +11,48 @@ const credentialsSchema = z.object({
 });
 
 export function SignUpView() {
+  const navigate = useNavigate();
   const { state, setField, submit, submitError } = useForm({
     initialState: { username: "", password: "" },
     schema: credentialsSchema,
+    onSubmit: async (result) => {
+      const res = await auxyApi.client.auth.signUp(result);
+      if (!res.ok) {
+        if (typeof res.error === "object" && "InvalidInput" in res.error) {
+          // todo: get field errors from validation report
+        }
+
+        throw res.error;
+      }
+
+      navigate("/");
+    },
   });
 
-  const navigate = useNavigate();
-
   return (
-    <View authed={false}>
-      <form
-        onSubmit={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
+    <View
+      public
+      overlay={
+        <form onSubmit={submit}>
+          <label>username</label>
+          <input
+            value={state.username}
+            onChange={(e) => setField("username", e.target.value)}
+          />
 
-          submit(async (result) => {
-            const res = await auxyApi.client.auth.signUp(result);
-            if (!res.ok) {
-              if (
-                typeof res.error === "object" &&
-                "InvalidInput" in res.error
-              ) {
-                // todo: get field errors from validation report
-              }
+          <label>password</label>
+          <input
+            value={state.password}
+            onChange={(e) => setField("password", e.target.value)}
+          />
 
-              throw res.error;
-            }
-
-            navigate("/");
-          });
-        }}
-      >
-        <label>username</label>
-        <input
-          value={state.username}
-          onChange={(e) => setField("username", e.target.value)}
-        />
-
-        <label>password</label>
-        <input
-          value={state.password}
-          onChange={(e) => setField("password", e.target.value)}
-        />
-
-        <button type="submit">Sign Up</button>
-        <Show
-          when={submitError()}
-          children={(error) => <span>{error()}</span>}
-        />
-      </form>
-    </View>
+          <button type="submit">Sign Up</button>
+          <Show
+            when={submitError()}
+            children={(error) => <span>{error()}</span>}
+          />
+        </form>
+      }
+    />
   );
 }

@@ -6,6 +6,9 @@ dist
 target
 .cargo
 
+# Sqlite
+*.db
+
 # Other
 generated
 .DS_Store

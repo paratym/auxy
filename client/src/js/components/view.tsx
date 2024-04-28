@@ -1,17 +1,22 @@
 import { useNavigate } from "@solidjs/router";
-import { JSX, mergeProps, onMount } from "solid-js";
+import { Show, mergeProps } from "solid-js";
+import * as styles from "./view.css";
+import { PassthroughProps, splitPassthroughProps } from "../utils";
 
-export type ViewProps = {
-  children: JSX.Element;
-  authed?: boolean;
+export type ViewProps = PassthroughProps<{ default: "div"; overlay: "div" }> & {
+  public?: boolean;
 };
 
-const defaultViewProps: Partial<ViewProps> = {
-  authed: true,
-};
+const defaultViewProps = {
+  public: false,
+} satisfies Partial<ViewProps>;
 
 export function View(_props: ViewProps) {
-  const props = mergeProps(defaultViewProps, _props);
+  const defaultedProps = mergeProps(defaultViewProps, _props);
+  const [passthroughProps, props] = splitPassthroughProps(defaultedProps, [
+    "public",
+  ]);
+
   const navigate = useNavigate();
 
   // onMount(() => {
@@ -19,5 +24,24 @@ export function View(_props: ViewProps) {
   //   if (!props.authed && sessionId) return navigate("/");
   // });
 
-  return <div>{props.children}</div>;
+  return (
+    <>
+      <Show when={passthroughProps.$overlay.children}>
+        <div
+          {...passthroughProps.$overlay}
+          classList={mergeProps(
+            { [styles.overlay]: true },
+            passthroughProps.$overlay.classList,
+          )}
+        />
+      </Show>
+      <div
+        {...passthroughProps.$default}
+        classList={mergeProps(
+          { [styles.layout]: true },
+          passthroughProps.$default.classList,
+        )}
+      />
+    </>
+  );
 }

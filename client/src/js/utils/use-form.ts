@@ -3,19 +3,28 @@ import { ZodType } from "zod";
 import { getErrorMessage } from ".";
 import { createStore } from "solid-js/store";
 
+export type FieldErrors<TResult> = Partial<Record<keyof TResult, string>>;
+export type SubmitCallback<TResult> = (
+  result: TResult,
+) =>
+  | void
+  | FieldErrors<TResult>
+  | Promise<void>
+  | Promise<FieldErrors<TResult>>;
+
 export type FormOpts<TResult> = {
   schema: ZodType<TResult>;
   initialState?: Partial<TResult>;
+  onSubmit: SubmitCallback<TResult>;
 };
 
 export function useForm<TResult extends Record<PropertyKey, unknown>>({
   schema,
   initialState = {},
+  onSubmit,
 }: FormOpts<TResult>) {
   const [state, setState] = createStore(initialState);
-  const [fieldErrors, setFieldErrors] = createStore<
-    Partial<Record<keyof TResult, string>>
-  >({});
+  const [fieldErrors, setFieldErrors] = createStore<FieldErrors<TResult>>({});
 
   const setField = <TKey extends keyof TResult>(
     key: TKey,
@@ -27,11 +36,8 @@ export function useForm<TResult extends Record<PropertyKey, unknown>>({
   const [submitting, setSubmitting] = createSignal(false);
   const [submitError, setSubmitError] = createSignal("");
 
-  type SubmitCallback = (
-    result: TResult,
-  ) => void | typeof fieldErrors | Promise<void> | Promise<typeof fieldErrors>;
-
-  const submit = async (callback: SubmitCallback) => {
+  const submit = async (e: Event) => {
+    e.preventDefault();
     setFieldErrors({});
     setSubmitError("");
     setSubmitting(true);
@@ -44,7 +50,7 @@ export function useForm<TResult extends Record<PropertyKey, unknown>>({
     }
 
     try {
-      const result = callback(parseResult.data);
+      const result = onSubmit(parseResult.data);
       const errors = result instanceof Promise ? await result : result;
       setFieldErrors(errors ?? {});
     } catch (error) {

@@ -1,6 +1,6 @@
 use rand::{rngs::OsRng, Rng};
 use serde::{Deserialize, Serialize};
-use sqlx::{database::HasArguments, Decode, Encode, Postgres};
+use sqlx::{database::HasArguments, Decode, Encode, Sqlite};
 
 #[derive(Debug, Clone, Copy)]
 pub struct ID(i64);
@@ -49,25 +49,25 @@ impl<'de> Deserialize<'de> for ID {
     }
 }
 
-impl<'q> Encode<'q, Postgres> for ID {
+impl<'q> Encode<'q, Sqlite> for ID {
     fn encode_by_ref(
         &self,
-        buf: &mut <Postgres as HasArguments<'q>>::ArgumentBuffer,
+        buf: &mut <Sqlite as HasArguments<'q>>::ArgumentBuffer,
     ) -> sqlx::encode::IsNull {
-        Encode::<Postgres>::encode_by_ref(&self.0, buf)
+        Encode::<Sqlite>::encode_by_ref(&self.0, buf)
     }
 }
 
-impl<'r> Decode<'r, Postgres> for ID {
+impl<'r> Decode<'r, Sqlite> for ID {
     fn decode(
-        value: <Postgres as sqlx::database::HasValueRef<'r>>::ValueRef,
+        value: <Sqlite as sqlx::database::HasValueRef<'r>>::ValueRef,
     ) -> Result<Self, sqlx::error::BoxDynError> {
-        Ok(Self(Decode::<Postgres>::decode(value)?))
+        Ok(Self(Decode::<Sqlite>::decode(value)?))
     }
 }
 
-impl sqlx::Type<Postgres> for ID {
-    fn type_info() -> <Postgres as sqlx::Database>::TypeInfo {
-        <i64 as sqlx::Type<Postgres>>::type_info()
+impl sqlx::Type<Sqlite> for ID {
+    fn type_info() -> <Sqlite as sqlx::Database>::TypeInfo {
+        <i64 as sqlx::Type<Sqlite>>::type_info()
     }
 }

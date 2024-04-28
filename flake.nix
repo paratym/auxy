@@ -27,7 +27,6 @@
             libsoup_3
             webkitgtk_4_1
             sqlx-cli
-            postgresql_16
           ];
         };
       });

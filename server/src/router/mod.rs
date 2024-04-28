@@ -2,7 +2,7 @@ mod auth;
 
 use axum::{extract::FromRef, Router};
 use axum_extra::extract::cookie::Key;
-use sqlx::{Pool, Postgres};
+use sqlx::{Pool, Sqlite};
 use std::env;
 use std::net::SocketAddr;
 use std::path::PathBuf;
@@ -11,7 +11,7 @@ use tokio::net::TcpListener;
 
 #[derive(Debug, Clone)]
 pub struct ReqState {
-    pub db: Arc<Pool<Postgres>>,
+    pub db: Arc<Pool<Sqlite>>,
     pub auth_key: Key,
 }
 
