@@ -18,16 +18,18 @@ pub async fn signup_handler(
 ) -> ApiResult<Redirect> {
     body.validate(&())?;
 
+    let id = ID::new().into_inner();
     let salt = SaltString::generate(&mut OsRng);
     let hash = Argon2::default()
         .hash_password(body.password.as_bytes(), &salt)
-        .map_err(|_| ApiError::InternalError)?;
+        .map_err(|_| ApiError::InternalError)?
+        .to_string();
 
     query!(
         "INSERT INTO users (id, username, password) VALUES ($1, $2, $3)",
-        ID::new().into_inner(),
+        id,
         body.username,
-        hash.to_string()
+        hash
     )
     .execute(state.db.as_ref())
     .await

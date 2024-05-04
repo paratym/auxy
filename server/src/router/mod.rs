@@ -1,4 +1,5 @@
 mod auth;
+mod library;
 
 use axum::{extract::FromRef, Router};
 use axum_extra::extract::cookie::Key;
@@ -35,6 +36,7 @@ pub async fn serve(state: ReqState) -> Result<(), tokio::io::Error> {
 
     let router = Router::new()
         .nest("/auth", auth::router())
+        .nest("/library", library::router())
         .with_state(state);
 
     let port = env::var("API_PORT")

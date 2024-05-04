@@ -6,7 +6,7 @@ use specta::Type;
 pub enum ApiError {
     InternalError,
     Unauthorized,
-    InvalidInput(Vec<(String, String)>),
+    InvalidInput(Option<Vec<(String, String)>>),
     Message(String),
 }
 
@@ -31,11 +31,11 @@ impl IntoResponse for ApiError {
 
 impl From<garde::Report> for ApiError {
     fn from(value: garde::Report) -> Self {
-        Self::InvalidInput(
+        Self::InvalidInput(Some(
             value
                 .iter()
                 .map(|(path, msg)| (path.to_string(), msg.to_string()))
                 .collect(),
-        )
+        ))
     }
 }

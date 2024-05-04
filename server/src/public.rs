@@ -1,20 +1,19 @@
 use tokio::process::Command;
 
-pub async fn serve() {
+pub async fn serve() -> Result<(), ()> {
     if cfg!(debug_assertions) {
-        Command::new("npm")
+        return Command::new("npm")
             .arg("run")
             .arg("dev")
             .arg("--workspace")
             .arg("client")
             .kill_on_drop(true)
             .spawn()
-            .expect("failed to spawn client dev server")
+            .map_err(|_| ())?
             .wait()
             .await
-            .expect("cliet server exited");
-
-        return;
+            .map(|_| ())
+            .map_err(|_| ());
     }
 
     todo!()

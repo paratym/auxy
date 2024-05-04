@@ -11,6 +11,7 @@ target
 
 # Other
 generated
+*.local
 .DS_Store
 .vscode
 .direnv

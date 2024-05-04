@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use rand::{rngs::OsRng, Rng};
 use serde::{Deserialize, Serialize};
 use sqlx::{database::HasArguments, Decode, Encode, Sqlite};
@@ -14,6 +16,10 @@ impl ID {
         self.into()
     }
 
+    pub fn as_inner(&self) -> &i64 {
+        &self.0
+    }
+
     pub fn from_inner(inner: i64) -> Self {
         inner.into()
     }
@@ -28,6 +34,12 @@ impl From<i64> for ID {
 impl From<ID> for i64 {
     fn from(ID(value): ID) -> i64 {
         value
+    }
+}
+
+impl Display for ID {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:x}", *self.as_inner())
     }
 }
 

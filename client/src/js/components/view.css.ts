@@ -6,13 +6,7 @@ export const layout = style({
   height: "100%",
   display: "grid",
   gap: theme.surface.background.gap,
-  background: theme.surface.background.color.bg,
+  background: theme.surface.background.bg,
 });
 
-export const overlay = style({
-  position: "absolute",
-  inset: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-});
+export const main = style({});

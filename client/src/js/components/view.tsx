@@ -1,11 +1,14 @@
-import { useNavigate } from "@solidjs/router";
-import { Show, mergeProps } from "solid-js";
+import { mergeProps } from "solid-js";
 import * as styles from "./view.css";
-import { PassthroughProps, splitPassthroughProps } from "../utils";
+import { CreateSelectorProps, classList, splitStructuredProps } from "../utils";
 
-export type ViewProps = PassthroughProps<{ default: "div"; overlay: "div" }> & {
-  public?: boolean;
-};
+export type ViewProps = CreateSelectorProps<
+  {
+    default: "main";
+    layout?: "div";
+  },
+  { public?: boolean }
+>;
 
 const defaultViewProps = {
   public: false,
@@ -13,35 +16,26 @@ const defaultViewProps = {
 
 export function View(_props: ViewProps) {
   const defaultedProps = mergeProps(defaultViewProps, _props);
-  const [passthroughProps, props] = splitPassthroughProps(defaultedProps, [
+  const [structuredProps, props] = splitStructuredProps(defaultedProps, [
     "public",
   ]);
 
-  const navigate = useNavigate();
-
+  // const navigate = useNavigate();
   // onMount(() => {
-  //   if (props.authed && !sessionId) return navigate("/auth/sign-up");
-  //   if (!props.authed && sessionId) return navigate("/");
+  // 	if (!props.public && !sessionId) return navigate("/auth/sign-up");
   // });
 
   return (
     <>
-      <Show when={passthroughProps.$overlay.children}>
-        <div
-          {...passthroughProps.$overlay}
-          classList={mergeProps(
-            { [styles.overlay]: true },
-            passthroughProps.$overlay.classList,
-          )}
-        />
-      </Show>
       <div
-        {...passthroughProps.$default}
-        classList={mergeProps(
-          { [styles.layout]: true },
-          passthroughProps.$default.classList,
-        )}
-      />
+        {...structuredProps.layout}
+        class={classList(structuredProps.layout?.class, styles.layout)}
+      >
+        <main
+          {...structuredProps.default}
+          class={classList(structuredProps.default.class, styles.main)}
+        />
+      </div>
     </>
   );
 }

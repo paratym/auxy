@@ -8,7 +8,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@kobalte/core": "^0.12.1",
+    "@kobalte/core": "^0.13.1",
     "@solidjs/router": "^0.8.3",
     "@tabler/icons-solidjs": "^2.34.0",
     "@tauri-apps/api": "2.0.0-beta.0",

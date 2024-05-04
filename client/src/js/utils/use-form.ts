@@ -14,8 +14,8 @@ export type SubmitCallback<TResult> = (
 
 export type FormOpts<TResult> = {
   schema: ZodType<TResult>;
-  initialState?: Partial<TResult>;
   onSubmit: SubmitCallback<TResult>;
+  initialState?: Partial<TResult>;
 };
 
 export function useForm<TResult extends Record<PropertyKey, unknown>>({

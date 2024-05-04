@@ -51,9 +51,9 @@ pub async fn signin_handler(
 
     query!(
         "INSERT INTO sessions (id, user_id, refresh_id, expires_at) VALUES ($1, $2, $3, $4)",
-        session_id.into_inner(),
-        user.id.into_inner(),
-        token.id.into_inner(),
+        session_id,
+        user.id,
+        token.id,
         session_expires
     )
     .execute(state.db.as_ref())

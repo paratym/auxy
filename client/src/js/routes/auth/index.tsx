@@ -1,6 +1,6 @@
 import { SignUpView } from "./sign-up";
 import { SignInView } from "./sign-in";
-import { Navigate, RouteDefinition } from "@solidjs/router";
+import { RouteDefinition } from "@solidjs/router";
 
 export const authRoutes = [
   {

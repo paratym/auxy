@@ -11,9 +11,9 @@ use std::{env, sync::Arc};
 use tokio::join;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), ()> {
     logger::init();
-    let pool = db::connect().await.unwrap();
+    let pool = db::connect().await.map_err(|_| ())?;
 
     let auth_secret = env::var("AUTH_SECRET").expect("missing auth secret");
     let state = ReqState {
@@ -21,5 +21,8 @@ async fn main() {
         auth_key: Key::derive_from(auth_secret.as_bytes()),
     };
 
-    join!(router::serve(state), public::serve());
+    let (api_res, static_res) = join!(router::serve(state), public::serve());
+    api_res.map_err(|_| ())?;
+    static_res.map_err(|_| ())?;
+    Ok(())
 }

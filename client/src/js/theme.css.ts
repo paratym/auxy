@@ -1,27 +1,26 @@
 import { createTheme } from "@vanilla-extract/css";
 
 export type ContainerProperties = {
-  color: {
-    bg: string;
-    fg: string;
-  };
+  bg: string;
+  fg: string;
   gap: string;
-  shadow: string;
-  border: string;
+  shadow?: string;
+  border?: string;
 };
 
 export type Theme = {
   surface: {
     background: ContainerProperties;
     static: ContainerProperties;
+    dynamic: ContainerProperties;
     main: ContainerProperties;
   };
   interactive: {
     default: ContainerProperties;
-    primary: Pick<ContainerProperties, "color" | "shadow">;
-    active: Pick<ContainerProperties, "color" | "shadow">;
-    inactive: Pick<ContainerProperties, "color" | "shadow">;
-    disabled: Pick<ContainerProperties, "color" | "shadow">;
+    primary: ContainerProperties;
+    active: ContainerProperties;
+    inactive: ContainerProperties;
+    disabled: ContainerProperties;
   };
   indicator: {
     default: {
@@ -63,28 +62,29 @@ export type Theme = {
 export const [themeClass, theme] = createTheme<Theme>({
   surface: {
     background: {
-      color: {
-        bg: "#121212",
-        fg: "#FFFFFF",
-      },
+      bg: "#121212",
+      fg: "#FFFFFF",
       gap: "8px",
       shadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
       border: "1px solid #333",
     },
     static: {
-      color: {
-        bg: "#212121",
-        fg: "#FFFFFF",
-      },
+      bg: "#212121",
+      fg: "#FFFFFF",
+      gap: "8px",
+      shadow: "none",
+      border: "1px solid #444",
+    },
+    dynamic: {
+      bg: "#212121",
+      fg: "#FFFFFF",
       gap: "8px",
       shadow: "none",
       border: "1px solid #444",
     },
     main: {
-      color: {
-        bg: "#1E1E1E",
-        fg: "#FFFFFF",
-      },
+      bg: "#1E1E1E",
+      fg: "#FFFFFF",
       gap: "8px",
       shadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
       border: "1px solid #333",
@@ -92,41 +92,39 @@ export const [themeClass, theme] = createTheme<Theme>({
   },
   interactive: {
     default: {
-      color: {
-        bg: "#333",
-        fg: "#FFFFFF",
-      },
+      bg: "#333",
+      fg: "#FFFFFF",
       gap: "8px",
       shadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
       border: "1px solid #666",
     },
     primary: {
-      color: {
-        bg: "#2196F3",
-        fg: "#FFFFFF",
-      },
+      bg: "#2196F3",
+      fg: "#FFFFFF",
       shadow: "0 2px 4px rgba(33, 150, 243, 0.2)",
+      border: "",
+      gap: "",
     },
     active: {
-      color: {
-        bg: "#4CAF50",
-        fg: "#FFFFFF",
-      },
+      bg: "#4CAF50",
+      fg: "#FFFFFF",
       shadow: "0 2px 4px rgba(76, 175, 80, 0.2)",
+      border: "",
+      gap: "",
     },
     inactive: {
-      color: {
-        bg: "#757575",
-        fg: "#FFFFFF",
-      },
+      bg: "#757575",
+      fg: "#FFFFFF",
       shadow: "none",
+      border: "",
+      gap: "",
     },
     disabled: {
-      color: {
-        bg: "#BDBDBD",
-        fg: "#FFFFFF",
-      },
+      bg: "#BDBDBD",
+      fg: "#FFFFFF",
       shadow: "none",
+      border: "",
+      gap: "",
     },
   },
   indicator: {
