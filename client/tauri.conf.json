@@ -16,11 +16,11 @@
       "targets": "all",
       "identifier": "auxy.paratym.dev",
       "icon": [
-        "./assets/logos/32x32.png",
-        "./assets/logos/128x128.png",
-        "./assets/logos/128x128@2x.png",
-        "./assets/logos/icon.icns",
-        "./assets/logos/icon.ico"
+        "./public/logos/32x32.png",
+        "./public/logos/128x128.png",
+        "./public/logos/128x128@2x.png",
+        "./public/logos/icon.icns",
+        "./public/logos/icon.ico"
       ]
     },
     "security": {

@@ -5,10 +5,11 @@ use crate::{
 };
 use argon2::{Argon2, PasswordHash, PasswordVerifier};
 use axum::{
-    extract::{Json, State},
+    extract::{FromRef, Json, State},
     response::IntoResponse,
 };
-use axum_extra::extract::SignedCookieJar;
+use axum_extra::extract::{cookie::Key, SignedCookieJar};
+use axum_typed_multipart::TypedMultipart;
 use garde::Validate;
 use serde::Deserialize;
 use sqlx::{query, query_as, types::time::PrimitiveDateTime};
@@ -22,7 +23,7 @@ struct UserRecord {
 
 pub async fn signin_handler(
     state: State<ReqState>,
-    body: Json<PasswordCredentials>,
+    body: TypedMultipart<PasswordCredentials>,
 ) -> ApiResult<impl IntoResponse> {
     body.validate(&())?;
 
@@ -61,7 +62,7 @@ pub async fn signin_handler(
     .map_err(|_| ApiError::InternalError)?;
 
     Ok((
-        SignedCookieJar::new(state.auth_key.clone()).add(token),
+        SignedCookieJar::new(Key::from_ref(&state.0)).add(token),
         Json(()),
     ))
 }

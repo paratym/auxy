@@ -8,13 +8,14 @@ use axum::{
     extract::{Json, State},
     response::Redirect,
 };
+use axum_typed_multipart::TypedMultipart;
 use garde::Validate;
 use rand::rngs::OsRng;
 use sqlx::query;
 
 pub async fn signup_handler(
     state: State<ReqState>,
-    body: Json<PasswordCredentials>,
+    body: TypedMultipart<PasswordCredentials>,
 ) -> ApiResult<Redirect> {
     body.validate(&())?;
 

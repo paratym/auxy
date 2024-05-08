@@ -1,22 +1,26 @@
-import { Show, createUniqueId } from "solid-js";
+import {
+  ComponentProps,
+  Show,
+  createUniqueId,
+  mergeProps,
+  splitProps,
+} from "solid-js";
 import { Label } from "./text";
-import { CreateSelectorProps, splitStructuredProps } from "../utils";
 
-export type SingleLineInputProps = CreateSelectorProps<{
-  default: "input";
-  label: typeof Label;
-}>;
+export type InputProps = ComponentProps<"input"> & {
+  label?: string;
+};
 
-export function Input(_props: SingleLineInputProps) {
-  const [structuredProps] = splitStructuredProps(_props, []);
-  const id = createUniqueId();
+export function Input(_props: InputProps) {
+  const _defaultedProps = mergeProps({ id: createUniqueId() }, _props);
+  const [props, htmlProps] = splitProps(_defaultedProps, ["label"]);
 
   return (
     <>
-      <Show when={structuredProps.label?.children}>
-        <Label for={id} {...structuredProps.label} />
+      <Show when={props.label}>
+        <Label for={htmlProps.id}>{props.label}</Label>
       </Show>
-      <input id={id} {...structuredProps.default} />
+      <input required {...htmlProps} />
     </>
   );
 }

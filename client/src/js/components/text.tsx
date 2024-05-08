@@ -1,11 +1,11 @@
-import { ComponentProps, ValidComponent, mergeProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
 import {
-  CreateStructuredProps,
-  GenericOptionalParam,
-  classList,
-  splitStructuredProps,
-} from "../utils";
+  ComponentProps,
+  ValidComponent,
+  mergeProps,
+  splitProps,
+} from "solid-js";
+import { Dynamic } from "solid-js/web";
+import { GenericOptionalParam, classList } from "../utils";
 import * as styles from "./text.css";
 
 type TextProps = {
@@ -13,6 +13,7 @@ type TextProps = {
 };
 
 const TEXT_PROPS_KEYS = ["hideEmpty"] as const;
+type x = NonNullable<undefined>;
 
 const defaultTextProps = {
   hideEmpty: false,
@@ -21,19 +22,15 @@ const defaultTextProps = {
 function splitTextProps<
   TProps extends TextProps,
   TExclude extends keyof TProps | undefined = undefined,
->(_props: TProps, ...[exclude]: GenericOptionalParam<Array<TExclude>>) {
-  const [structuredProps, intermediateProps] = splitStructuredProps(_props, [
-    ...(exclude ?? []),
-    ...TEXT_PROPS_KEYS,
-  ]);
-
-  return [
-    structuredProps,
-    mergeProps(defaultTextProps, intermediateProps),
-  ] as const;
+>(
+  _props: TProps,
+  ...[exclude = []]: GenericOptionalParam<Array<NonNullable<TExclude>>>
+) {
+  const [textProps, props] = splitProps(_props, exclude as Array<keyof TProps>);
+  return [props, mergeProps(defaultTextProps, textProps)] as const;
 }
 
-export type TitleProps = CreateStructuredProps<{ default: "h1" }, TextProps>;
+export type TitleProps = ComponentProps<"h1"> & TextProps;
 
 export function Title(_props: TitleProps) {
   const [structuredProps, props] = splitTextProps(_props);
@@ -55,14 +52,13 @@ const headingComponentMap = {
   sm: "h4",
 } as const satisfies Record<PropertyKey, ValidComponent>;
 
-export type HeadingProps = CreateStructuredProps<
-  {
-    default: (typeof headingComponentMap)[keyof typeof headingComponentMap];
-  },
+type HeadingComponent =
+  (typeof headingComponentMap)[keyof typeof headingComponentMap];
+
+export type HeadingProps = ComponentProps<HeadingComponent> &
   TextProps & {
     variant?: keyof typeof headingComponentMap;
-  }
->;
+  };
 
 const defaultHeadingProps = {
   variant: "md",

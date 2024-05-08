@@ -4,14 +4,15 @@ use sqlx::{
     Pool,
 };
 use std::env;
+use tracing::debug;
 
 pub async fn connect() -> Result<Pool<Sqlite>, sqlx::Error> {
     let url = env::var("DATABASE_URL").expect("missing database url");
     let pool = SqlitePoolOptions::new().connect(&url).await?;
-    log::info!("successfully connected to database");
+    debug!("successfully connected to database");
 
     migrate!("../database/migrations").run(&pool).await?;
-    log::info!("successfully migrated database");
+    debug!("successfully migrated database");
 
     Ok(pool)
 }

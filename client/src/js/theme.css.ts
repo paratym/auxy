@@ -1,4 +1,4 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createTheme, fontFace } from "@vanilla-extract/css";
 
 export type ContainerProperties = {
   bg: string;
@@ -59,7 +59,26 @@ export type Theme = {
   };
 };
 
-export const [themeClass, theme] = createTheme<Theme>({
+const bwNista = fontFace([
+	{
+		fontWeight: 400,
+		src: [
+			'local("BW Nista Geometric")',
+			'local("BW Nista")',
+			'url("/fonts/BwNistaGeo-Rg.woff2") format("woff2")'
+		]
+	},
+	{
+		fontWeight: 800,
+		src: [
+			'local("BW Nista Geometric Bold")',
+			'local("BW Nista Bold")',
+			'url("/fonts/BwNistaGeo-Rg.woff2") format("woff2")'
+		]
+	}
+])
+
+export const [themeContainer, theme] = createTheme<Theme>({
   surface: {
     background: {
       bg: "#121212",
@@ -148,24 +167,24 @@ export const [themeClass, theme] = createTheme<Theme>({
   },
   text: {
     title: {
-      font: "Roboto, sans-serif",
+      font: `${bwNista}, sans-serif`,
       size: "24px",
       weight: "bold",
     },
     heading: {
-      font: "Roboto, sans-serif",
+      font: `${bwNista}, sans-serif`,
       weight: "bold",
       sm: { size: "20px" },
       md: { size: "24px" },
       lg: { size: "28px" },
     },
     body: {
-      font: "Roboto, sans-serif",
+      font: `${bwNista}, sans-serif`,
       size: "16px",
       weight: "normal",
     },
     label: {
-      font: "Roboto, sans-serif",
+      font: `${bwNista}, sans-serif`,
       size: "14px",
       weight: "normal",
     },

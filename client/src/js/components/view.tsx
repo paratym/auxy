@@ -1,24 +1,24 @@
-import { mergeProps } from "solid-js";
+import { JSX, mergeProps } from "solid-js";
 import * as styles from "./view.css";
-import { CreateSelectorProps, classList, splitStructuredProps } from "../utils";
+import { Surface } from ".";
 
-export type ViewProps = CreateSelectorProps<
-  {
-    default: "main";
-    layout?: "div";
-  },
-  { public?: boolean }
->;
+export type ViewProps = {
+  public?: boolean;
+  layout?: "centered";
+  children?: JSX.Element;
+};
 
 const defaultViewProps = {
   public: false,
+  layout: "centered",
 } satisfies Partial<ViewProps>;
 
 export function View(_props: ViewProps) {
-  const defaultedProps = mergeProps(defaultViewProps, _props);
-  const [structuredProps, props] = splitStructuredProps(defaultedProps, [
-    "public",
-  ]);
+  const props = mergeProps(defaultViewProps, _props);
+  // const [structuredProps, props] = splitStructuredProps(defaultedProps, [
+  //   "public",
+  //   "variant",
+  // ]);
 
   // const navigate = useNavigate();
   // onMount(() => {
@@ -27,15 +27,9 @@ export function View(_props: ViewProps) {
 
   return (
     <>
-      <div
-        {...structuredProps.layout}
-        class={classList(structuredProps.layout?.class, styles.layout)}
-      >
-        <main
-          {...structuredProps.default}
-          class={classList(structuredProps.default.class, styles.main)}
-        />
-      </div>
+      <Surface variant="background" class={styles.layout[props.layout]}>
+        <Surface variant="main">{props.children}</Surface>
+      </Surface>
     </>
   );
 }

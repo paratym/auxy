@@ -18,6 +18,9 @@
             (rust-bin.stable.latest.default.override {
               extensions = [ "rustfmt" ];
             })
+            sqlx-cli
+            cargo-watch
+            systemfd
           ];
           buildInputs = with pkgs; [
             openssl
@@ -26,7 +29,6 @@
             gdk-pixbuf
             libsoup_3
             webkitgtk_4_1
-            sqlx-cli
           ];
         };
       });

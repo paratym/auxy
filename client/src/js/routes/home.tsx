@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "@solidjs/router";
-import { View } from "../components/view";
-import { auxyApi } from "../services";
+import { A, useNavigate } from "@solidjs/router";
+import { View } from "@/components/view";
+import { auxyApi } from "@/services";
 
 export function HomeView() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export function HomeView() {
   return (
     <View>
       <h1>music n shiiii</h1>
-      <Link href="/library">Library</Link>
+      <A href="/library">Library</A>
       <button
         onClick={() => {
           auxyApi.client.auth.signOut();

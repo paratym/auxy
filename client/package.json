@@ -1,28 +1,39 @@
 {
-  "name": "@paratym/auxy",
-  "version": "0.0.0",
+  "name": "auxy",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vinxi dev",
     "dev:native": "tauri dev",
-    "build": "vite build"
+    "build": "vinxi build",
+    "serve": "vinxi"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.1",
-    "@solidjs/router": "^0.8.3",
-    "@tabler/icons-solidjs": "^2.34.0",
+    "@solidjs/meta": "^0.29.3",
+    "@solidjs/router": "^0.13.3",
+    "@solidjs/start": "^1.0.0-rc.0",
+    "@tabler/icons-solidjs": "^3.3.0",
+    "@tanstack/solid-query": "^5.35.1",
     "@tauri-apps/api": "2.0.0-beta.0",
-    "@vanilla-extract/css": "^1.14.1",
-    "@vanilla-extract/recipes": "^0.5.1",
-    "solid-js": "^1.7.8",
-    "zod": "^3.22.4"
+    "@vanilla-extract/css": "^1.15.1",
+    "solid-js": "^1.8.17",
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.0.0-beta.1",
-    "@types/chroma-js": "^2.4.1",
-    "@vanilla-extract/vite-plugin": "^4.0.4",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.4",
-    "vite-plugin-solid": "^2.7.0"
+    "@types/chroma-js": "^2.4.4",
+    "@vanilla-extract/vite-plugin": "^4.0.9",
+    "typescript": "^5.4.5",
+    "vinxi": "^0.3.11",
+    "vite": "^5.2.11",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
+  "overrides": {
+    "vinxi": {
+      "vite": "$vite"
+    }
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

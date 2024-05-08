@@ -1,6 +1,8 @@
 # Javascript
 node_modules
-dist
+.output
+.vinxi
+app.config.timestamp_*.js
 
 # Rust
 target
@@ -8,6 +10,7 @@ target
 
 # Sqlite
 *.db
+*.db-*
 
 # Other
 generated

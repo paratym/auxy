@@ -1,25 +1,12 @@
-import { Theme } from "../theme.css";
-import { CreateSelectorProps, classList, splitStructuredProps } from "../utils";
+import { ComponentProps } from "solid-js";
 import * as styles from "./surface.css";
 
-export type SurfaceProps = CreateSelectorProps<
-  {
-    default: "div";
-  },
-  {
-    variant: keyof Theme["surface"];
-  }
->;
+export type SurfaceProps = ComponentProps<"div"> & {
+  variant: "background" | "static" | "dynamic" | "main";
+};
 
-const defaultProps = {} as const satisfies Partial<SurfaceProps>;
+export function Surface(props: SurfaceProps) {
+  let ref;
 
-export function Surface(_props: SurfaceProps) {
-  const [structuredProps, props] = splitStructuredProps(_props);
-
-  return (
-    <div
-      {...structuredProps.default}
-      class={classList(structuredProps.default.class, styles.card)}
-    />
-  );
+  return <div ref={ref} class={styles.surface[props.variant]} {...props} />;
 }
