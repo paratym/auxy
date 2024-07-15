@@ -1,26 +1,36 @@
-mod client;
-mod rest;
-mod state;
-
-use axum::{Router, response::Redirect};
-use std::{env::{self, VarError}, error::Error, net::SocketAddr, future};
+use axum::{middleware::from_fn_with_state, Router};
+use std::{
+    env::{self, VarError},
+    error::Error,
+    net::SocketAddr,
+};
 use tokio::net::TcpListener;
+use tower::ServiceBuilder;
 use tower_http::trace::TraceLayer;
 use tracing::debug;
 
+mod client;
+mod middleware;
+mod rest;
+mod state;
+
+pub use middleware::AuthToken;
 pub use state::*;
+
+use self::middleware::auth_layer;
 
 pub async fn serve(state: ReqState) -> Result<(), Box<dyn Error>> {
     let router = Router::new()
         .nest(env!("PUBLIC_SERVER_CLIENT_PATH"), client::router()?)
         .nest(env!("PUBLIC_SERVER_REST_PATH"), rest::router())
-        .fallback(|| future::ready(Redirect::temporary(env!("PUBLIC_SERVER_CLIENT_PATH"))))
-        .layer(TraceLayer::new_for_http())
+        .layer(
+            ServiceBuilder::new()
+                .layer(TraceLayer::new_for_http())
+                .layer(from_fn_with_state(state.clone(), auth_layer)),
+        )
         .with_state(state);
 
     let listener = get_tcp_listener().await?;
-    debug!("listening for connections at {}", listener.local_addr()?);
-
     axum::serve(listener, router).await?;
     Ok(())
 }
@@ -41,5 +51,7 @@ async fn get_tcp_listener() -> Result<TcpListener, Box<dyn Error>> {
     };
 
     let address = SocketAddr::from(([127, 0, 0, 1], port));
-    Ok(TcpListener::bind(address).await?)
+    let listener = TcpListener::bind(address).await?;
+    debug!("listening for connections at {}", address);
+    Ok(listener)
 }

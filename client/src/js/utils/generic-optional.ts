@@ -1,25 +1,26 @@
-// type IncludedKeys<T> = T extends Array<any>
-//   ? keyof T
-//   : T extends object
-//     ? keyof T
-//     : never;
-// type x = IncludedKeys<["", ""]>;
-//
-// export type OptionalKeys<T> = Exclude<
-//   {
-//     [K in IncludedKeys<T>]: undefined extends T[K]
-//       ? K
-//       : T[K] extends never
-//         ? K
-//         : never;
-//   }[IncludedKeys<T>],
-//   undefined
-// >;
+type RequiredKeys<T extends object> = Extract<
+  Exclude<
+    {
+      [K in keyof T]: undefined extends T[K] ? never : K;
+    }[keyof T],
+    undefined
+  >,
+  T extends Array<any> ? `${number}` : keyof T
+>;
 
-// TODO: fix
-export type GenericOptionalParam<T> = [T];
-// ? [param?: T | undefined]
-// : [T];
+type IsRequired<T> = undefined extends T
+  ? false
+  : T extends object
+    ? RequiredKeys<T> extends never
+      ? false
+      : true
+    : true;
 
-// TODO: fix
-export type GenericOptionalProperty<K extends PropertyKey, V> = { [k in K]: V };
+export type GenericOptionalParam<T> = IsRequired<T> extends true
+  ? [T]
+  : [_?: T | undefined];
+
+export type GenericOptionalProperty<
+  K extends PropertyKey,
+  V,
+> = IsRequired<V> extends true ? { [_ in K]: V } : { [_ in K]?: V | undefined };

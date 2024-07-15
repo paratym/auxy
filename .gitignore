@@ -3,6 +3,7 @@ node_modules
 .output
 .vinxi
 app.config.timestamp_*.js
+*.tsbuildinfo
 
 # Rust
 target

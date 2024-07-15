@@ -1,11 +1,17 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { theme } from "../theme.css";
 import { ViewProps } from "./view";
-import * as surfaceStyles from "./surface.css";
+
+const container = style({
+  width: "100%",
+  maxWidth: "100%",
+  height: "100%",
+  maxHeight: "100%",
+  overflow: "hidden",
+});
 
 export const layout = styleVariants({
   centered: [
-    surfaceStyles.surface.background,
+    container,
     {
       display: "flex",
       alignItems: "center",

@@ -1,7 +1,11 @@
-import { routes } from "./js";
 import { Router } from "@solidjs/router";
-import type { Env as _ } from "../env";
+import { ServiceProvider, routes } from "./js";
+import "./global.css";
 
 export default function App() {
-  return <Router>{routes}</Router>;
+  return (
+    <ServiceProvider>
+      <Router>{routes}</Router>
+    </ServiceProvider>
+  );
 }

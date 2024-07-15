@@ -5,7 +5,8 @@
     "dev": "vinxi dev",
     "dev:native": "tauri dev",
     "build": "vinxi build",
-    "serve": "vinxi"
+    "serve": "vinxi",
+    "gen:component": "node ./scripts/gen-component.js"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.1",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@tauri-apps/cli": "^2.0.0-beta.1",
     "@types/chroma-js": "^2.4.4",
+    "@types/node": "^20.12.11",
     "@vanilla-extract/vite-plugin": "^4.0.9",
     "typescript": "^5.4.5",
     "vinxi": "^0.3.11",

@@ -9,7 +9,7 @@ export function SignUpView() {
   return (
     <View public>
       <CredentialsForm
-        action={new URL("/auth/sign-up", auxyApi.BASE_URL).toString()}
+        action={`${auxyApi.BASE_URL}/auth/sign-up`}
         // onSubmit={async (result) => {
         //   const res = await auxyApi.client.auth.signUp(result);
         //   if (!res.ok) {

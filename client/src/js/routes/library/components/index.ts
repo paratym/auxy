@@ -1,1 +1,1 @@
-export * from "./upload-dialog";
+export * from "./upload-form";

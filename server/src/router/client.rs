@@ -13,15 +13,16 @@ pub fn router() -> Result<Router<ReqState>, Error> {
 
     let dev_server_url = format!("http://localhost:{}", env!("DEV_CLIENT_SERVER_PORT"));
     let router = Router::new()
-        .fallback(move || std::future::ready(axum::response::Redirect::temporary(&dev_server_url)));
+        .fallback(move || std::future::ready(axum::response::Redirect::to(&dev_server_url)));
 
     Ok(router)
 }
 
 #[cfg(not(debug_assertions))]
 pub fn router() -> Result<Router<ReqState>, Error> {
-    let path = std::env::var("CLIENT_PATH")
+    let dir_path = std::env::var("CLIENT_PATH")
         .map_err(|_| Error::new(tokio::io::ErrorKind::NotFound, "missing client path"))?;
 
-    Ok(Router::new().fallback_service(tower_http::services::ServeDir::new(path)))
+    // TODO: redirect to sign in for unauthenticated
+    Ok(Router::new().fallback_service(tower_http::services::ServeDir::new(dir_path)))
 }

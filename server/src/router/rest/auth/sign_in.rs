@@ -1,19 +1,17 @@
 use super::PasswordCredentials;
 use crate::{
-    router::ReqState,
-    utils::{ApiError, ApiResult, AuthToken, ID},
+    router::{AuthToken, ReqState},
+    utils::{ApiError, ApiResult, ID},
 };
 use argon2::{Argon2, PasswordHash, PasswordVerifier};
 use axum::{
-    extract::{FromRef, Json, State},
-    response::IntoResponse,
+    extract::State,
+    response::{IntoResponse, Redirect},
 };
-use axum_extra::extract::{cookie::Key, SignedCookieJar};
 use axum_typed_multipart::TypedMultipart;
 use garde::Validate;
 use serde::Deserialize;
-use sqlx::{query, query_as, types::time::PrimitiveDateTime};
-use time::{Duration, OffsetDateTime};
+use sqlx::query_as;
 
 #[derive(Debug, Deserialize)]
 struct UserRecord {
@@ -22,8 +20,8 @@ struct UserRecord {
 }
 
 pub async fn signin_handler(
-    state: State<ReqState>,
-    body: TypedMultipart<PasswordCredentials>,
+    State(state): State<ReqState>,
+    TypedMultipart(body): TypedMultipart<PasswordCredentials>,
 ) -> ApiResult<impl IntoResponse> {
     body.validate(&())?;
 
@@ -44,25 +42,6 @@ pub async fn signin_handler(
         .verify_password(body.password.as_bytes(), &parsed_hash)
         .map_err(|_| ApiError::Message("Wrong password".into()))?;
 
-    let session_id = ID::new();
-    let _session_expires = OffsetDateTime::now_utc().saturating_add(365 * Duration::DAY);
-    let session_expires = PrimitiveDateTime::new(_session_expires.date(), _session_expires.time());
-
-    let token = AuthToken::new(user.id, session_id);
-
-    query!(
-        "INSERT INTO sessions (id, user_id, refresh_id, expires_at) VALUES ($1, $2, $3, $4)",
-        session_id,
-        user.id,
-        token.id,
-        session_expires
-    )
-    .execute(state.db.as_ref())
-    .await
-    .map_err(|_| ApiError::InternalError)?;
-
-    Ok((
-        SignedCookieJar::new(Key::from_ref(&state.0)).add(token),
-        Json(()),
-    ))
+    let token = AuthToken::new_session(&state, user.id).await?;
+    Ok((token, Redirect::to(env!("PUBLIC_SERVER_CLIENT_PATH"))))
 }

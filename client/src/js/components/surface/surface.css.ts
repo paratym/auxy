@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 import { SurfaceProps } from "./surface";
-import { Theme, theme } from "../theme.css";
+import { Theme, theme } from "../../theme";
 
 function computedStyles(key: keyof Theme["surface"]) {
   return {

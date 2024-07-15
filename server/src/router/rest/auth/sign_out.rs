@@ -1,12 +1,11 @@
 use crate::{
-    router::ReqState,
-    utils::{ApiError, ApiResult, AuthToken},
+    router::{AuthToken, ReqState},
+    utils::{ApiError, ApiResult},
 };
 use axum::{
     extract::State,
-    http::header::SET_COOKIE,
+    http::{header::SET_COOKIE, StatusCode},
     response::{AppendHeaders, IntoResponse},
-    Json,
 };
 use sqlx::query;
 
@@ -20,5 +19,8 @@ pub async fn signout_handler(
         .await
         .map_err(|_| ApiError::InternalError)?;
 
-    Ok((AppendHeaders([(SET_COOKIE, "session=")]), Json(())))
+    Ok((
+        AppendHeaders([(SET_COOKIE, "session=")]),
+        StatusCode::RESET_CONTENT,
+    ))
 }

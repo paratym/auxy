@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "dev:client": "npm run dev --workspace client",
-    "dev:server": "systemfd --no-pid -s http::$SERVER_PORT -- cargo-watch -x 'run --bin auxy_server'",
+    "dev:server": "./server/scripts/dev.sh",
     "dev": "npm run dev:server & npm run dev:client"
   }
 }

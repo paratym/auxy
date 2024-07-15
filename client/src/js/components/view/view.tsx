@@ -1,6 +1,7 @@
 import { JSX, mergeProps } from "solid-js";
 import * as styles from "./view.css";
-import { Surface } from ".";
+import { Surface } from "@/components";
+import { classList } from "@/utils";
 
 export type ViewProps = {
   public?: boolean;
@@ -26,10 +27,8 @@ export function View(_props: ViewProps) {
   // });
 
   return (
-    <>
-      <Surface variant="background" class={styles.layout[props.layout]}>
-        <Surface variant="main">{props.children}</Surface>
-      </Surface>
-    </>
+    <Surface variant="background" class={styles.layout[props.layout]}>
+      <Surface variant="main">{props.children}</Surface>
+    </Surface>
   );
 }

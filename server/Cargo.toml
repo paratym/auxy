@@ -37,9 +37,12 @@ cached = { version = "0.51.0", features = [
 	"async_tokio_rt_multi_thread",
 ] }
 tower = { version = "0.4.13", features = ["util"] }
-tower-http = { version = "0.5.2", features = ["fs", "trace"] }
+tower-http = { version = "0.5.2", features = ["fs", "trace", "auth"] }
 axum_typed_multipart = "0.11.1"
 tempfile = "3.10.1"
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 listenfd = "1.0.1"
+futures-util = "0.3.30"
+pin-project-lite = "0.2.14"
+lazy_static = "1.4.0"

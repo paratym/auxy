@@ -21,7 +21,6 @@
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
-    "noImplicitReturns": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "useUnknownInCatchVariables": true,

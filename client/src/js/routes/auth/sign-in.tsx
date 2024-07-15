@@ -9,7 +9,7 @@ export function SignInView() {
   return (
     <View public>
       <CredentialsForm
-        action={new URL("/auth/sign-in", auxyApi.BASE_URL).toString()}
+        action={`${auxyApi.BASE_URL}/auth/sign-in`}
         // onSubmit={async (result) => {
         //   const res = await auxyApi.client.auth.signIn(result);
         //   if (!res.ok) {
